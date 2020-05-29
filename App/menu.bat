@@ -35,7 +35,9 @@ ECHO c - Quick and Dity Blog 0.4
 ECHO d - Hong CMS Master 3.0  
 ECHO e - Insanely Simple Blog 0.4/0.5
 ECHO f - PHP Director Game Edition
-ECHO g - EXIT
+ECHO g - Web Cookbook 
+ECHO h - Devana (Game) 1.6.6
+ECHO i - EXIT
 ECHO.
 
 CHOICE /C abcdefghijklx /N /M "Choose the PHP app that you want to install under UniServerZ or press x to EXIT."
@@ -45,7 +47,9 @@ IF ERRORLEVEL 3 SET M=qdblog & SET d=null
 IF ERRORLEVEL 4 SET M=HongCMS-master & SET d=nul
 IF ERRORLEVEL 5 SET M=insanelysimpleblog & SET d=null
 IF ERRORLEVEL 6 SET M=phpdirectorgameedition & SET d=null
-IF ERRORLEVEL 10 GOTO:EOF
+IF ERRORLEVEL 7 SET M=WebCookbook & SET d=null
+IF ERRORLEVEL 8 SET M=devana & SET d=null
+IF ERRORLEVEL 9 GOTO:EOF
 
 
 

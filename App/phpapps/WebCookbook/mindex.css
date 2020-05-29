@@ -1,0 +1,273 @@
+.display {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 800px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+
+.title {
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	width: 780px;
+	height: 38px;
+	color: black;
+	background-image:url("./images/system/title.jpg");
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.maske {
+	position: absolute;
+	left: 10px;
+	top: 38px;
+	width: 1004px;
+}
+
+.headline {
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	width: 780px;
+	height: 28px;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.rubrik {
+	position: absolute;
+	top: 45px;
+	left: 0px;
+	height: 17px;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.servings {
+	position: absolute;
+	top: 35px;
+	left: 703px;
+	width: 100px;
+	height: 17px;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.rezeptpos {
+	position: absolute;
+	left: 0px;
+	top: 68px;
+	width: 780px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.zutaten {
+	position: relative;
+	width: 780px;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.zcells {
+	font-family: Arial, Helevetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.hcells {
+	font-family: Arial, Helevetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.icells {
+	font-family: Arial, Helevetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	width: 20px;
+}
+
+.image {
+	position: relative;
+	float: right;
+	margin-left: 10px;
+	width: 445px;
+}
+
+.navigation {
+	position: absolute;
+	top: 707px;
+	left: 10px;
+	width: 1003px;
+	height: 50px;
+	background-color: white;
+}
+
+.navbar {
+	position: absolute;
+	top: 15px;
+	left: 0px;
+	width: 1003px;
+}
+
+.rdisplay {
+	position: absolute;
+	top: 50px;
+	left: 10px;
+	width: 780px;
+	height: 708px;
+	text-align: left;
+	color: black;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.idisplay {
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	width: 905px;
+	height: 688px;
+	text-align: left;
+	color: black;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.footer {
+	position: relative;
+	width: 780px;
+	height: 38px;
+	color: black;
+	background-image:url("./images/system/title.jpg");
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.zaehler {
+	position: relative;
+	width: 780px;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.neuspan {
+	font-family: sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	color: red;
+}
+
+.pdisplay {
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	width: 870px;
+	margin-left:-410px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: white;
+	background-color: red;
+	text-align: center;
+}
+
+.bereich {
+	display: block;
+	color: black;
+	background-color: orange;
+	font-family: sans-serif;
+	font-size: 10px;
+	width: 100px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	cursor: pointer;
+}
+
+a.link {
+	display: block;
+	color: black;
+	font-family: Verdana, Arial;
+	font-size: 10px;
+	text-decoration: None;
+	border-bottom: solid 1px #FFFFFF;
+}
+
+a.link.bereich {
+	display: block;
+	background-color: #cyan;
+	width: 100px;
+	height: 25px;
+}
+
+a.link:hover {
+	display: block;
+	color: black;
+	background-color: yellow;
+}
+
+.suchen {
+	position: absolute;
+	width: 350px;
+	height: 55px;
+}
+
+.admin {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1000px;
+	height: 590px;
+	border-style: solid;
+	background-color: silver;
+}
+
+.option {
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	width: 675px;
+	height: 500px;
+}
+
+
+.options1 {
+	position: absolute;
+	left: 0px;
+	top: 20px;
+	width: 670px;
+	border-style: solid;
+	border-color: silver;
+}
+
+.options2 {
+	position: absolute;
+	left: 0px;
+	top: 160px;
+	width: 670px;
+	height: 150px;
+	border-style: solid;
+	border-color: silver;
+}

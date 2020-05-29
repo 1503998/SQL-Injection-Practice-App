@@ -1,1 +1,0 @@
-<div align="center">{literal}{/literal}</div>
