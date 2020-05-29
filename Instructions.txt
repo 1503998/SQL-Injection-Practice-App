@@ -1,4 +1,4 @@
-Open up the App Folder and launch the menu
+Open up the App Folder and launch the menu.
 From here choose one of the vulnerable apps using keys A-I. 
 Wait while the application sets up then navigate to browser and access localhost (127.0.0.1).
 Try to prove the SQL injection vulnerabilitiy using manual techniques or tools like OWASPZAP, SQLmap and metasploit
