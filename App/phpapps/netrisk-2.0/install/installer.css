@@ -1,0 +1,700 @@
+/**************************************************
+
+	Style		Blue
+	Version	1.0
+	Author	Servous <servous@gmail.com>
+	Created	2005-03-12
+	Edited	2005-03-29
+
+**************************************************/
+
+/* ########## BODY ########## */
+
+body {
+	font-family: Verdana, Helvetica, Arial, Sans-Serif;
+	font-size: 11px;
+	background-color: #999;
+	background-image: url('images/bg.png');
+}
+
+#netrisk_root {
+	background-image: url('images/bg_div.png');
+	background-position: center center;
+	background-repeat: repeat-y;
+	width: 658px;
+	margin: auto;
+}
+
+#netrisk_head {
+	background-image: url('images/bg_div_t.png');
+	background-position: top center;
+	background-repeat: no-repeat;
+	padding: 20px 0px 0px 0px;
+}
+
+#netrisk_body {
+	margin: 0px;
+	padding: 10px 20px 0px 20px;
+	overflow: hidden;
+	clear: both;
+}
+
+#netrisk_foot {
+	background-image: url('images/bg_div_b.png');
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	height: 20px;
+	clear: both;
+}
+
+#netrisk_copy {
+	color: #999;
+	text-align: center;
+	padding: 20px 0px 4px 0px;
+	clear: both;
+}
+
+#netrisk_page_title {
+	text-align: center;
+}
+
+#netrisk_page_title a {
+	font-size: 2.4em;
+	font-weight: bold;
+	color: #369;
+}
+
+#netrisk_page_title a:hover {
+	text-decoration: none;
+}
+
+#netrisk_page_description {
+	text-align: center;
+}
+
+#netrisk_page_description  h2 {
+	font-weight: normal;
+	color: #999;
+}
+
+#netrisk_main {
+	margin: 0px 0px 0px 150px;
+	width: 455px;
+}
+
+/* ########## LINKS ########### */
+
+a {
+	color: #69C;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #369;
+	text-decoration: underline;
+}
+
+a.netrisk_post_options_link_comments, a.netrisk_post_options_link_perma, a.netrisk_post_options_link_trackback, a.netrisk_post_options_link_delete, a.netrisk_post_options_link_edit, a.netrisk_comment_options_link {
+	padding-right: 4px;
+}
+
+a.netrisk_post_options_link_perma {
+	background-image: url('images/ico_permalink.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+a.netrisk_post_options_link_perma:hover {
+	background-image: url('images/ico_permalink_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+a.netrisk_post_options_link_comments {
+	background-image: url('images/ico_comments.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+a.netrisk_post_options_link_comments:hover {
+	background-image: url('images/ico_comments_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+a.netrisk_post_options_link_trackback {
+	background-image: url('images/ico_trackback.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+a.netrisk_post_options_link_trackback:hover {
+	background-image: url('images/ico_trackback_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+a.netrisk_post_options_link_delete {
+	background-image: url('images/ico_delete.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+a.netrisk_post_options_link_delete:hover {
+	background-image: url('images/ico_delete_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+a.netrisk_post_options_link_edit {
+	background-image: url('images/ico_edit.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+a.netrisk_post_options_link_edit:hover {
+	background-image: url('images/ico_edit_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+a.help {
+	cursor: help;
+	font-weight: bold;
+	color: #090;
+}
+
+.netrisk_block_text a.netrisk_admin_posts {
+	background-image: url('images/ico_edit.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_posts:hover {
+	background-image: url('images/ico_edit_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_images {
+	background-image: url('images/ico_images.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_images:hover {
+	background-image: url('images/ico_images_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_categories {
+	background-image: url('images/ico_categories.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_categories:hover {
+	background-image: url('images/ico_categories_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_links {
+	background-image: url('images/ico_permalink.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_links:hover {
+	background-image: url('images/ico_permalink_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_censoring {
+	background-image: url('images/ico_comments.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_censoring:hover {
+	background-image: url('images/ico_comments_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_blocks {
+	background-image: url('images/ico_blocks.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_blocks:hover {
+	background-image: url('images/ico_blocks_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_static {
+	background-image: url('images/ico_static.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_static:hover {
+	background-image: url('images/ico_static_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_settings {
+	background-image: url('images/ico_settings.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_settings:hover {
+	background-image: url('images/ico_settings_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_menu {
+	background-image: url('images/ico_menu.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_menu:hover {
+	background-image: url('images/ico_menu_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_logout {
+	background-image: url('images/ico_logout.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+.netrisk_block_text a.netrisk_admin_logout:hover {
+	background-image: url('images/ico_logout_h.png');
+	background-position: center left;
+	background-repeat: no-repeat;
+	padding-left: 14px;
+}
+
+#netrisk_copy a {
+	color: #999;
+	text-decoration: underline;
+}
+
+#netrisk_copy a:hover {
+	color: #000;
+}
+
+a.netrisk_external {
+	background-image: url('images/external.png');
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding: 0px 14px 0px 0px;
+}
+
+/* ########## MENU ########## */
+
+#netrisk_menu {
+	overflow: hidden;
+	background-image: url('images/bg_menu.png');
+	background-position: bottom center;
+	background-repeat: repeat-x;
+}
+
+#netrisk_menu ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 630px;
+}
+
+#netrisk_menu li {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	background-image: url('images/menu_bg_right.png');
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+#netrisk_menu .netrisk_menu_current {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('images/menu_bg_right_h.png');
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+#netrisk_menu a {
+	display: block;
+	color: #69C;
+	background-image: url('images/menu_bg_left.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding: 5px 10px 5px 10px;
+	border-bottom: 1px #999 solid;
+}
+
+#netrisk_menu .netrisk_menu_current a {
+	display: block;
+	color: #000;
+	background-image: url('images/menu_bg_left_h.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding: 5px 10px 6px 10px;
+	border-bottom-width: 0px;
+}
+
+/* ########## POST ########## */
+
+.netrisk_post {
+	padding: 0px 0px 10px 0px;
+}
+
+.netrisk_post_topic {
+	border-bottom: 1px #69C solid;
+	padding: 4px 0px 0px 0px;
+}
+
+.netrisk_post_topic h1 {
+	color: #369;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.netrisk_post_text {
+	background-image: url('images/bg_block.png');
+	background-repeat: repeat-x;
+	padding: 4px;
+}
+
+.netrisk_post_options {
+	margin: 10px 0px 20px 0px;
+}
+
+.netrisk_post_edit {
+	color: #CCC;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	font-size: 1em;
+}
+
+/* ########## COMMENTS ########## */
+
+.netrisk_comment {
+	background-color: #FFF;
+	margin: 0px 0px 10px 0px;
+}
+
+.netrisk_comment_topic {
+	background-image: url('images/bg_netrisk_post_topic.png');
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	color: #369;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 4px 0px 1px 0px;
+}
+
+.netrisk_comment_text {
+	color: #999;
+	padding: 4px;
+}
+
+.netrisk_comment_options {
+	margin: 10px 0px 20px 0px;
+}
+
+.netrisk_comment_edit {
+	color: #CCC;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	font-size: 9px;
+}
+
+/* ########## BLOCK ########## */
+
+#netrisk_block_body {
+	float: left;
+	width: 140px;
+}
+
+.netrisk_block {
+	margin: 0px 0px 10px 0px;
+}
+
+.netrisk_block_topic {
+	border-bottom: 1px #69C solid;
+	padding: 4px 0px 0px 0px;
+}
+
+.netrisk_block_topic h2 {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #369;
+}
+
+.netrisk_block_text {
+	padding: 4px;
+	background-image: url('images/bg_block.png');
+	background-position: top center;
+	background-repeat: repeat-x;
+	padding: 4px 0px 10px 4px;
+}
+
+/* ########## PAGES ########## */
+
+.netrisk_pages {
+	background-image: url('images/bg_pages.png');
+	background-position: top center;
+	background-repeat: repeat-x;
+	border-top: 1px #CCC solid;
+	padding: 4px;
+}
+
+.netrisk_pages_prev {
+	float: left;
+	width: 140px;
+	text-align: left;
+}
+
+.netrisk_pages_current {
+	width: 50px;
+	text-align: center;
+	margin: auto;
+}
+
+.netrisk_pages_next {
+	float: right;
+	width: 140px;
+	text-align: right;
+}
+
+/* ########## LIST ########## */
+
+#netrisk_block_body ul {
+	list-style-image: none;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+ul {
+	list-style-image: url('images/ul.png');
+	padding-left: 20px;
+}
+
+/* ########## CALENDAR ########## */
+
+table.netrisk_cal {
+	background-image: url('images/bg_block.png');
+	background-position: top center;
+	background-repeat: repeat-x;
+	width: 100%;
+	margin: 0px 0px 10px 0px;
+	color: #CCC;
+}
+
+td.netrisk_cal_header {
+	text-align: center;
+}
+
+td.netrisk_cal {
+	text-align: center;
+	color: #369;
+}
+
+td.netrisk_cal_empty {
+}
+
+td.netrisk_cal_day {
+	text-align: center;
+	font-size: 1em;
+	height: 20px;
+}
+
+td.netrisk_cal_today {
+	color: #000;
+	background-color: #FFF;
+	background-image: url('images/cal_today.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+td.netrisk_cal_active {
+	background-color: #FFF;
+	background-image: url('images/cal_active.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	text-align: center;
+	font-size: 1em;
+}
+
+/* ########## FORMS ########## */
+
+form {
+	margin: 0px;
+}
+
+/* special case to keep ie's original fieldset */
+*>fieldset {
+	border: 1px #CCC solid;
+}
+
+legend {
+	color: #369;
+	font-weight: bold;
+}
+
+label.netrisk_label_col {
+	width: 200px;
+	float: left;
+}
+
+input, textarea, select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+input.netrisk_input {
+	margin: 2px;
+	border: 1px #CCC solid;
+	padding: 2px;
+}
+
+input.netrisk_search {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #999;
+	width: 130px;
+	border: 1px #CCC solid;
+}
+
+textarea.netrisk_text {
+	width: 420px;
+	height: 400px;
+	border: 1px #CCC solid;
+}
+
+textarea.netrisk_comment {
+	width: 300px;
+	height: 100px;
+	border: 1px #CCC solid;
+	margin: 2px;
+	padding: 2px;
+}
+
+.netrisk_button {
+	color: #369;
+	font-weight: bold;
+}
+
+.netrisk_var {
+	float: left;
+	width: 120px;
+	padding: 4px;
+}
+
+.netrisk_val {
+	background-color: #F0F0F0;
+	margin: 0px 0px 2px 120px;
+	padding: 4px;
+}
+
+/* ########## IMAGES ########## */
+
+img {
+	border-width: 0px;
+	margin: 0px;
+}
+
+.netrisk_image {
+	background-color: #F0F0F0;
+	border: 1px #CCC solid;
+	margin: 0px 0px 10px 0px;
+	padding: 4px;
+	width: 440px;
+	overflow: hidden;
+}
+
+.netrisk_image_info {
+	margin: 0px 0px 0px 130px;
+}
+
+.netrisk_image_tn {
+	float: left;
+}
+
+/* ########## MISC ########## */
+
+span.hilite {
+	background-color: #FCC;
+}
+
+.netrisk_category {
+	color: #69C;
+	font-size: 1em;
+}
+
+.netrisk_quote {
+	border: 1px #CCC dashed;
+	padding: 4px;
+}
+
+.netrisk_line {
+	border-bottom: 1px #CCC dotted;
+}
+
+.netrisk_code {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCC #FFF #FFF #CCC;
+	padding: 10px;
+	background-color: #F0F0F0;
+	color: #000;
+}
+
+h1, h2 {
+	margin: 0px;
+	font-size: 1em;
+	font-weight: normal;
+}
+
+span.netrisk_censor {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+	border-bottom-color: #F00;
+}

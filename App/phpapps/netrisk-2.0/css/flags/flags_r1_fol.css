@@ -1,0 +1,185 @@
+.black .flag    {background-image:url("../images/flags/flag_black.gif");}
+.blue .flag    {background-image:url("../images/flags/flag_blue.gif");}
+.gold .flag    {background-image:url("../images/flags/flag_gold.gif");}
+.green .flag    {background-image:url("../images/flags/flag_green.gif");}
+.grey .flag    {background-image:url("../images/flags/flag_grey.gif");}
+.purple .flag    {background-image:url("../images/flags/flag_purple.gif");}
+.red .flag    {background-image:url("../images/flags/flag_red.gif");}
+.teal .flag    {background-image:url("../images/flags/flag_teal.gif");}
+.yellow .flag    {background-image:url("../images/flags/flag_yellow.gif");}
+
+
+/*individual country positions*/
+#flag_NewGuinea {
+top: 340px;
+left: 710px;
+}
+#flag_WesternAustralia {
+top: 400px;
+left: 655px;
+}
+#flag_EasternAustralia {
+top: 390px;
+left: 705px;
+}
+#flag_Indonesia {
+top: 325px;
+left: 640px;
+}
+#flag_Afghanistan {	
+top: 190px;
+left: 510px;
+}
+#flag_Alaska {	
+top: 120px;
+left: 35px;
+}
+#flag_Alberta{	
+top: 165px;
+left: 95px;
+}
+#flag_Argentina{
+top: 435px;
+left: 203px;
+}
+#flag_Brazil{
+top: 350px;
+left: 240px;
+}
+#flag_CentralAmerica{
+top: 260px;
+left: 120px;
+}
+#flag_China{
+top: 227px;
+left: 600px;
+}
+#flag_Congo{
+top: 330px;
+left: 415px;
+}
+#flag_EasternUS{
+top: 220px;
+left: 160px;
+}
+#flag_EastAfrica{
+top: 300px;
+left: 445px;
+}
+#flag_Egypt{
+top: 250px;
+left: 420px;
+}
+#flag_GreatBritain{
+top: 160px;
+left: 350px;
+}
+#flag_Greenland{
+top: 75px;
+left: 277px;
+}
+#flag_Iceland{
+top: 127px;
+left: 327px;
+}
+#flag_India{
+top: 260px;
+left: 550px;
+}
+#flag_Irkutsk{
+top: 160px;
+left: 627px;
+}
+#flag_Japan{
+top: 220px;
+left: 695px;
+}
+#flag_Kamchatka{
+top: 117px;
+left: 735px;
+}
+#flag_Madagascar{
+top: 373px;
+left: 477px;
+}
+#flag_MiddleEast{
+top: 245px;
+left: 475px;
+}
+#flag_Mongolia{
+top: 195px;
+left: 645px;
+}
+#flag_NorthAfrica{
+top: 275px;
+left: 370px;
+}
+#flag_NorthernEurope{
+top: 170px;
+left: 393px;
+}
+#flag_NWTerritory{
+top: 122px;
+left: 100px;
+}
+#flag_Oikiotoluk{
+top: 120px;
+left: 180px;
+}
+#flag_Ontario{
+top: 165px;
+left: 157px;
+}
+#flag_Peru{
+top: 365px;
+left: 185px;
+}
+#flag_Quebec{
+top: 165px;
+left: 200px;
+}
+#flag_Scandinavia{
+top: 118px;
+left: 405px;
+}
+#flag_Siam{
+top: 275px;
+left: 605px;
+}
+#flag_Siberia{
+top: 130px;
+left: 573px;
+}
+#flag_SouthernEurope{
+top: 205px;
+left: 410px;
+}
+#flag_SouthAfrica{
+top: 390px;
+left: 420px;
+}
+#flag_Ural{
+top: 140px;
+left: 525px;
+}
+#flag_Ukraine{
+top: 150px;
+left: 455px;
+}
+#flag_Venezuela{
+top: 310px;
+left: 185px;
+}
+#flag_WesternEurope{
+top: 205px;
+left: 355px;
+}
+#flag_WesternUS{
+top: 210px;
+left: 108px;
+}
+#flag_Yakutsk{
+top: 115px;
+left: 655px;
+}
+                  

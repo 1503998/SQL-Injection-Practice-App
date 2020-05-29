@@ -1,0 +1,468 @@
+/**************************************************
+
+	Style		NetRisk Base Browser CSS
+	Version	1.0
+	Author	PTMuldoon <ptmuldoon@gmail.com>
+	Created	2008-03-27
+
+**************************************************/
+
+
+/**************************************************
+********************* BODY ************************
+**************************************************/
+    
+#browser {
+	padding:5px 0 5px 0;
+	float:left;
+	width:80%;
+    background: #997f4c;
+}
+
+#games {
+	margin: 5px;
+	border: 1px solid #ffffff;
+	background: #000000;
+	
+}
+
+#mainchat {
+	margin: 5px;
+	width:99%;
+	height:100%;
+	overflow: auto;
+	text-align:left;
+	float:left;
+	color: black;
+    background: #ddd;
+    border: 1px solid #ffffff;
+    
+}
+
+#sidebar {
+	padding:10px 0 10px 0;
+	width:20%;
+	background: #997f4c;
+	float:right;
+}
+
+.right{
+	float:right;
+}
+
+.top {
+	position: relative;
+	top: 15px;
+}
+
+/**************************************************
+************* Browser Game Listing  ***************
+**************************************************/
+
+.gname{
+	color:red;
+	font-weight: bold;	
+}
+
+.tooltip_orange{
+	color:#ff8c00;
+	font-weight: bold;	
+}
+
+
+/**************************************************
+******************* Top Ten  **********************
+**************************************************/
+
+#top_ten {
+	margin: 0 auto;
+	width:90%;
+	color: white;
+    background: black;
+    border: 1px solid #ffffff;
+    overflow: auto;;
+}
+
+#top_ten th {
+	color: red;
+}
+
+#top_ten h3 {
+	text-align: center;
+	color: yellow;
+}
+
+#top_ten a{
+	color:yellow;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#top_ten .right {
+	text-align: right;
+}
+
+#top_ten td {
+	padding: 0px;
+	font-size:12px;
+}
+
+
+/**************************************************
+****************  My Games    *********************
+**************************************************/
+
+#mygames {
+	margin: 0 auto;
+	width:90%;
+	color: white;
+	border: 1px solid #ffffff;
+    background: black;   
+    overflow: auto;
+    font-size:0.9em; 
+}
+
+#mygames a{
+	color:white;
+	text-decoration: none;
+}
+
+#usersonline {
+	width:90%;
+	margin: 0 auto;
+	color: white;
+    background: #000000;
+    border: 1px solid #ffffff;
+}
+
+#usersonline a{
+	color:white;
+	text-decoration: none;
+}
+
+
+
+
+/**************************************************
+******************* Buttons  **********************
+**************************************************/
+
+.button_grey, #login .button { 
+	border: 1px solid black;
+	text-decoration: none;
+	background-color: #eee;
+	color: black;
+	padding: 3px 3px 1px 3px;
+	margin-right:5px;
+	font-size:0.7em; 
+}
+     
+.button_red { 
+	border: 1px solid black;
+	text-decoration: none;
+	color: black;
+	background-color: #ff0000;
+	padding: 3px 3px 1px 3px;
+	width:120px;
+	margin-right:5px;
+	font-size:0.7em; 
+}
+
+
+/**************************************************
+*************Create New Game  *********************
+**************************************************/
+
+#create_game{
+	margin: 0 auto;
+	width: 90%;
+	margin-top:20px;
+	font-size:14pt;
+	color: #000000;
+	font-weight: bold;
+	background-color: #996633;
+	padding: 5px;
+}
+
+#create_title {
+	text-align: center;
+	background: green;
+	font-weight:bold;	
+	color: yellow;
+	border: 1px solid #ffffff;
+}
+
+.create_title {
+	text-align: center;
+	background: green;
+	font-weight:bold;	
+	color: yellow;
+	border: 1px solid #ffffff;
+}
+
+#create_left{
+	padding:10px;
+	height:200px;
+	width:55%;
+	float: left;
+	background-image: url(../images/misc/bkgd.jpg);
+	background-repeat: repeat;
+	margin-top: 10px;
+	border: 1px solid #ffffff;
+	margin-bottom:10px;
+}
+
+#create_right{
+	padding: 10px;
+	width:40%;
+	height:200px;
+	float: right;
+	background-image: url(../images/misc/bkgd.jpg);
+	margin-top: 10px;
+	text-align: left;	
+	border: 1px solid #ffffff;
+	margin-bottom:10px;
+}
+
+#create_notify{
+	padding-top: 25px;
+	padding-left: 20px;
+	margin-top:10px;
+	background-image: url(../images/misc/bkgd.jpg);
+	background-repeat: repeat;
+	text-align: left;	
+	border: 1px solid #ffffff;
+	clear: both;
+}
+
+.note {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 9px;
+	color: #660000;
+}
+
+.colors{
+	margin-left: 20px;
+}
+
+.creating {
+	margin:0 auto;
+    width:100%;
+	padding: 8px;
+	border: 1px solid #000000;
+	position: relative;
+	width: 284px;
+	height: 172px;
+	background-image: url(../images/misc/loadmap.jpg);
+	background-color: #CCCCCC;
+}
+
+.loadtitle {
+	position: relative;
+	font-variant: small-caps;
+	font-size: 18px;
+	font-weight: bolder;
+	background-color: transparent;
+	color: #660000;
+}
+
+/**************************************************
+****************** Join Game  *********************
+**************************************************/
+
+#join_game{
+	margin: 0 auto;
+	width: 90%;
+	margin-top:20px;
+	font-size:14pt;
+	color: #000000;
+	font-weight: bold;
+	background-image: url(../images/misc/rock012.jpg);
+	background-repeat: repeat;
+	min-height: 1100px;
+	padding: 5px;
+}
+
+#join_title {
+	text-align: center;
+	background: green;
+	font-weight:bold;	
+	color: yellow;
+	border: 1px solid #ffffff;
+}
+
+#join_left{
+	padding:10px;
+	width:55%;
+	float: left;
+	margin-top: 10px;
+	border: 1px solid #ffffff;
+	margin-bottom:10px;
+}
+
+#join_right{
+	padding: 10px;
+	width:40%;
+	float: right;
+	margin-top: 10px;
+	text-align: left;	
+	border: 1px solid #ffffff;
+	margin-bottom:10px;
+}
+
+#join_notify{
+	padding-top: 25px;
+	padding-left: 20px;
+	margin-top:10px;
+	text-align: left;	
+	border: 1px solid #ffffff;
+	clear: both;
+}
+
+#joinpassword {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+/**************************************************
+************** Register CSS ************************
+**************************************************/
+
+#register {
+	margin: 0 auto;
+	width: 90%;
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size:14pt;
+	color: #000000;
+	font-weight: bold;
+	background-image: url(../images/misc/rock012.jpg);
+	background-repeat: repeat;
+	min-height: 1100px;
+	padding: 5px;
+}
+
+#register_title {
+	text-align: center;
+	background: green;
+	font-weight:bold;	
+	color: yellow;
+	border: 1px solid #ffffff;
+}
+
+#register td {
+	font-weight: bold;	
+	color: blue;
+}
+
+/**************************************************
+************** Profile CSS ************************
+**************************************************/
+
+#profile {
+	float:left;
+	color: #ffffff;
+	background: #000000;
+	margin-top: 10px;
+	padding:5px;
+	width:75%;
+	height:1100px;
+	border: 1px solid #FFFFFF;
+}
+
+#profile th{
+	color: yellow;
+	text-align: center;
+	background: green;
+	font-weight:bold;	
+}
+
+#profile_links {
+	float:right;
+	color: #ffffff;
+	background: #000000;
+	margin-top: 10px;
+	padding:5px;
+	width:20%;
+	height:1100px;
+	border: 1px solid #FFFFFF;
+}
+
+#profile_links a {
+	color: blue;
+	font-weight: bold;	
+}
+
+.profile_bio{
+	width:98%;
+	background: yellow;
+	border: 1px solid #ffffff;
+}
+
+
+.profile_title {
+	text-align: center;
+	background: blue;
+	font-weight:bold;	
+	color: white;
+	border: 1px solid #ffffff;
+}
+
+/**************************************************
+************** Player States **********************
+**************************************************/
+
+.state-waiting, .state-waiting a {
+    background-color: transparent;
+    font-weight: bold;
+	color: #ca6;
+}
+
+.state-placing, .state-placing a {
+    background-color: transparent;
+    font-weight: bold;
+	color: blue;
+}
+
+.state-initial, .state-initial a {
+    background-color: transparent;
+    font-weight: bold;
+	color: blue;
+}
+.state-trading, .state-trading a {
+	background-color: transparent;
+	font-weight: bold;
+	color: #fe16d5;
+}
+.state-attacking, .state-attacking a {
+    background-color: transparent;
+    font-weight: bold;
+	color: red;
+}
+.state-fortifying, .state-fortifying a {
+    background-color: transparent;
+    font-weight: bold;
+	color: green;
+}
+.state-winner, .state-winner a {
+    background-color: transparent;
+    font-weight: bold;
+	color: #ffff00;
+}
+.state-dead, .state-dead a {
+    background-color: transparent;
+    font-weight: bold;
+	color: #ff8c00;
+}
+
+
+/**************************************************
+***************** Admin CSS  **********************
+**************************************************/
+
+#logheight{
+	height:400px;
+	overflow: auto;
+}

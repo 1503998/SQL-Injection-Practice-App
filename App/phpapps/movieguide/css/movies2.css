@@ -1,0 +1,211 @@
+#wrapper {
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #fff;
+    font-family: Josefin Sans, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}  
+.container {
+    color: #333;
+    width: 100%;
+    max-width: 1280px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+}
+body {
+    background-color: #fff;
+}
+
+.glyph-icon svg {
+    width:14px;
+    height:14px;
+    margin-top: 2px;
+    margin-bottom: -2px;
+}
+
+.si-glyph * {
+    fill: red;
+    color: red;
+}
+
+.giconsz svg {
+    height: 30px;
+    width: 30px;
+    margin: 4px;
+}
+.giapron svg {
+    height: 30px;
+    width: 30px;
+    margin: 4px;
+    fill: red;
+    color: red;
+}
+
+a, a:visited {
+    color: #666;
+    font-size: 95%;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 32px;
+    font-variant-caps: small-caps;
+
+}
+
+a:hover, a:active {
+    color: #ccc;
+}
+h1 {
+    color: silver;
+    border-bottom: 2px dotted #ccc;
+    padding-bottom: 3px;
+}
+h2 {
+    color: silver;
+    border-bottom: 2px dotted #ccc;
+    padding-bottom: 3px;
+}
+h4 {
+    font-size: 100%;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: #111;
+    z-index: 9999;
+    border: 0;
+    font-size: 10px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 3px;
+    border-radius: 0;
+    font-family: Dosis, sans-serif;
+    border-bottom: 1px solid #666;
+}
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: red !important;
+    border-bottom: 0px solid #666;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+.footer {
+    display: block;
+    border-top: 1px solid #666;
+    padding-top: 20px;  
+    color: white;
+    background-color: black;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+page_links
+{
+    font-family: arial, verdana;
+    font-size: 10px;
+    border:1px #ccc solid;
+    padding: 4px;
+    margin: 4px;
+    background-color: #fff;
+    text-decoration: none;
+}
+#page_a_link
+{
+    font-family: arial, verdana;
+    font-size: 10px;
+    border:1px #ccc solid;
+    color: #000;
+    background-color: #fff;
+    padding: 4px;
+    margin: 2px;
+    text-decoration: none;
+}
+#page_a_link:hover
+{
+    font-family: arial, verdana;
+    font-size: 10px;
+    border:1px #ccc solid;
+    color: #fff;
+    background-color: #000;
+    padding: 4px;
+    margin: 2px;
+    text-decoration: none;
+}
+
+.tbuttonbk {
+    display: block;
+    margin: 0px; 	
+    border: 1px solid #e1e1e1; 
+    background-color: #fafafa;
+    border-radius: 3px 3px 3px 3px;
+    padding: 6px 10px;
+}
+a.tbuttonsm, a.tbottonsm:visited {
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+    padding: 2px;
+    margin: 2px;
+    background-color: #fff;
+    border-radius: 3px 3px 3px 3px;
+    font-family: Dosis, sans-serif;
+    font-size: 100% !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #666;
+    text-decoration: none;
+    width: 100%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+a.tbuttonsm:hover, a.tbuttonsm:active {
+    display: inline-block;
+    border: 1px solid #fff;
+    padding: 2px;
+    margin: 2px;
+    color: red;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #fff;
+    font-size: 110% !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 1px 1px 3px #999;
+    white-space: nowrap;
+}
+.imtrans {
+    opacity: .8;
+    -webkit-filter: grayscale(80%);
+    filter: grayscale(80%);
+    -webkit-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+}
+a.imtrans:hover {
+    opacity: 1;
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.btn-outline-secondary, .btn-sm {
+    font-size: 60%;
+    font-weight: bold;
+    background-color: #fff;
+    margin: 2px;
+}
+
+.highlight {
+    color: red; 
+}
+.coverim {
+    max-height: 300px; 
+    margin: 6px; 
+    border-radius: 6px 6px 6px 6px; 
+    box-shadow: 1px 1px 5px #333;
+}

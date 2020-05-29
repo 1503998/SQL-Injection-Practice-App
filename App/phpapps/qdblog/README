@@ -1,0 +1,65 @@
+QDBlog v0.4 (C) 2004 Ben Hughes and distributed under the GNU GPL
+
+QDBlog is a (relatively) simple and minimalistic content management system.  It aims to be small (under 50KB) and customizable. It is intended for the more knowledgeable webmasters/sysadmins.  It requires PHP and MySQL
+
+Features:
+Creating new entries (simple to use web form)
+Editing entries
+Deleting entries
+Commenting system
+Protection from (crap)floods
+Categories
+Theming Engine
+Administration Panel
+User Authentication
+Most other basic blogging tasks
+
+Installation:
+Create a MySQL db for qdblog to inhabit
+Untar qdblog (tar -xvjf qdblog-version-number.tar.bz2)
+Point your browser at http://(your server name)/qdblog/install/index.php
+Fill out the form and press submit
+If prompted, place config in the qdblog/ folder (and then click refresh)
+Point your browser at http://(your server name)/qdblog/index.php and confirm that everything is working.
+Delete the install/ directory for security purposes.
+Login and enjoy.
+
+Using:
+Login with an admin account and use the links provided.
+New Entry displays a form that will create a new entry (Gee!)
+Edit allows you to edit an existing entry
+Delete deletes the entry
+Admin takes you to an administration page where topics and themes are controlled
+
+If you have trouble using or find a bug (or accidental feature) please contact me at schleyfox@gmail.com
+
+Themes:
+Theme-age is a new feature in QDBlog and I have attempted to make it (work!) easy.  To begin theming I would recommend reading the code and my default theme, I will give a brief overview of the file structure.
+
+top.php - holds all of the page code up until the beginning of the content section.  Put all of the stuff you want in this, I recommend putting all the content in a <td> or a <div>
+
+bottom.php - holds all of the code below the content section.  Please close all of your tags (<td>s and <div>)
+
+entry.html - holds the code and the format information for each entry (uses bracket enclosed tags to control placement of content elements, read my examples for a basic overview)
+
+cat_top.php - holds the code for the 'top' of the category block
+
+cat_mid.html - holds the code and format for each category (again with bracket enclosed tags)
+
+cat_bottom.php - bottom of the category block
+
+comment_top.html - top of the comment block
+
+comment.html - code and format for each comment (again with the bracket tags)
+
+comment_bottom.html - bottom of comment block
+
+That should be it, it's not difficult to design the code in a WYSIWYG or in the typical way and then just split it at the content section into top.php and bottom.php and then just figure out the formatting of all the sections.  You should also be able to move the category link section around using CSS and such.  If you create a particularly nice theme and you would like to share it, email me (schleyfox@gmail.com) and I might host it on sf.net (Must be W3C compliant and use uncopyrighted material (or have permission or be under CC or what not).  You know the typical boilerplate.)
+
+
+
+
+That about sums it up I hope, sorry for the sucking of this documentation, it has to be that way.
+
+Ben "schleyfox" Hughes
+

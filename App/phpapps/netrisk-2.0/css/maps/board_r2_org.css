@@ -1,0 +1,245 @@
+.map {
+	/*position: absolute;*/
+	position:relative; 
+	color: #000000;
+	margin: 0 auto 0 auto;
+    padding:0;
+	width: 828px;
+	height: 576px;
+	z-index: 0;
+}
+.map li {
+    display:block;
+    background:transparent; 
+    position: absolute;
+    margin:0;
+    padding:0;
+}
+
+/*(the army counts)*/
+.map a {
+	display:block;
+    position:absolute;
+    margin:0;
+    padding:0;
+    top:0;
+    left:0;
+    width:55px;
+    height:38px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bolder;
+	text-align: center;
+    padding:0 2px 0 2px;
+    color:black;
+}
+
+/*(the army counts)*/
+.map li a p{
+	position: absolute;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bolder;
+	text-align: center;
+    padding:0 2px 0 2px;
+    margin:0;
+	height: 12px;
+	border: 1px solid black;
+    color:black;
+	left: 27px;
+	bottom: -3px;
+    z-index:4;
+}
+/*individual country positions*/
+#Alaska {	
+top: 80px;
+left: 35px;
+}
+#Alberta{	
+top: 135px;
+left: 110px;
+}
+#Afghanistan {	
+top: 200px;
+left: 510px;
+}
+#Argentina{
+top: 445px;
+left: 180px;
+}
+#Brazil{
+top: 355px;
+left: 225px;
+}
+#CentralAmerica{
+top: 245px;
+left: 135px;
+}
+#China{
+top: 225px;
+left: 595px;
+}
+#Congo{
+top: 385px;
+left: 385px;
+}
+#EastAfrica{
+top: 340px;
+left: 415px;
+}
+#EasternAustralia {
+top: 450px;
+left: 700px;
+}
+#EasternUS{
+top: 195px;
+left: 180px;
+}
+#Egypt{
+top: 285px;
+left: 398px;
+}
+#FalklandIslands{
+top: 510px;
+left: 225px;
+}
+#GreatBritain{
+top: 155px;
+left: 330px;
+}                 
+#Greenland{
+top: 35px;
+left: 305px;
+}
+#Hawaii{
+top: 230px;
+left: 25px;
+}
+#Iceland{
+top: 95px;
+left: 327px;
+}
+#India{
+top: 280px;
+left: 540px;
+}
+#Indonesia {
+top: 365px;
+left: 620px;
+}
+#Irkutsk{
+top: 135px;
+left: 635px;
+}
+#Japan{
+top: 200px;
+left: 710px;
+}
+#Kamchatka{
+top: 85px;
+left: 735px;
+}
+#Madagascar{
+top: 465px;
+left: 450px;
+}
+#MiddleEast{
+top: 260px;
+left: 450px;
+}
+#Mongolia{
+top: 175px;
+left: 655px;
+}
+#NewGuinea {
+top: 375px;
+left: 720px;
+}
+#NewZealand {
+top: 460px;
+left: 750px;
+}
+#NorthAfrica{
+top: 305px;
+left: 328px;
+}
+#NorthernEurope{
+top: 170px;
+left: 373px;
+}
+#NWTerritory{
+top: 85px;
+left: 110px;
+}
+#Oikiotoluk{
+top: 65px;
+left: 205px;
+}
+#Ontario{
+top: 135px;
+left: 175px;
+}
+#Peru{
+top: 375px;
+left: 165px;
+}
+#Philippines {
+top: 300px;
+left: 680px;
+}
+#Quebec{
+top: 130px;
+left: 235px;
+}
+#Scandinavia{
+top: 90px;
+left: 375px;
+}
+#Siam{
+top: 300px;
+left: 610px;
+}
+#Siberia{
+top: 85px;
+left: 580px;
+}
+#SouthAfrica{
+top: 465px;
+left: 380px;
+}
+#SouthernEurope{
+top: 210px;
+left: 390px;
+}
+#Svalbard{
+top: 15px;
+left: 420px;
+}
+#Ukraine{
+top: 130px;
+left: 445px;
+}
+#Ural{
+top: 115px;
+left: 525px;
+}
+#Venezuela{
+top: 310px;
+left: 155px;
+}
+#WesternAustralia {
+top: 440px;
+left: 630px;
+}
+#WesternEurope{
+top: 215px;
+left: 327px;
+}
+#WesternUS{
+top: 185px;
+left: 120px;
+}
+#Yakutsk{
+top: 75px;
+left: 655px;
+}

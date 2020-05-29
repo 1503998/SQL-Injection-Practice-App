@@ -1,0 +1,213 @@
+.black .flag    {background-image:url("../images/flags/flag_black.gif");}
+.blue .flag    {background-image:url("../images/flags/flag_blue.gif");}
+.gold .flag    {background-image:url("../images/flags/flag_gold.gif");}
+.green .flag    {background-image:url("../images/flags/flag_green.gif");}
+.grey .flag    {background-image:url("../images/flags/flag_grey.gif");}
+.purple .flag    {background-image:url("../images/flags/flag_purple.gif");}
+.red .flag    {background-image:url("../images/flags/flag_red.gif");}
+.teal .flag    {background-image:url("../images/flags/flag_teal.gif");}
+.yellow .flag    {background-image:url("../images/flags/flag_yellow.gif");}
+
+/*individual country positions*/
+
+/* Calla 1-7 */
+
+#flag_Britannia{   /* 1 */
+top: 75px;
+left: 60px;
+}
+#flag_Lycia{      /* 2 */
+top: 175px;
+left: 4px;
+}
+#flag_Hispania{   /* 3 */
+top: 270px;
+left: 50px;
+}
+#flag_Galatia{   /* 4 */
+top: 360px;
+left: 2px;
+}
+#flag_Caesariensis{   /* 5 */
+top: 385px;
+left: 51px;
+}
+#flag_Sicilia{   /* 6 */
+top: 375px;
+left: 110px;
+}
+#flag_AsiaMinor{   /* 7 */
+top: 320px;
+left: 180px;
+}
+
+/* WasteLands 8-13*/
+
+#flag_Molise{   /* 8 */
+top: 10px;
+left: 260px;
+}
+#flag_Germania{   /* 9 */
+top: 65px;
+left: 200px;
+}
+#flag_Alpina{   /* 10 */
+top: 135px;
+left: 100px;
+}
+#flag_Bithynia{   /* 11 */
+top: 150px;
+left: 180px;
+}
+#flag_Cappadocia{   /* 12 */
+top: 204px;
+left: 114px;
+}
+#flag_Judaea{   /* 13 */
+top: 270px;
+left: 125px;
+}
+
+/* Keystone Earth 14-17 */
+
+#flag_Belgica{   /* 14 */
+top: 60px;
+left: 335px;
+}
+#flag_Sarinatia{   /* 15 */
+top: 60px;
+left: 425px;
+}
+#flag_Raetia{   /* 16 */
+top: 150px;
+left: 385px;
+}
+#flag_Thule{      /* 17 */
+top: 115px;
+left: 455px;
+}
+
+/* Endworld 18-23 */
+
+#flag_Crete{      /* 18 */
+top: 55px;
+left: 550px;
+}
+#flag_Noricum{   /* 19 */
+top: 1px;
+left: 595px;
+}
+#flag_Illyricum{   /* 20 */
+top: 55px;
+left: 620px;
+}
+#flag_Moesia{   /* 21 */
+top: 25px;
+left: 690px;
+}
+#flag_Corsica{   /* 22 */
+top: 40px;
+left: 770px;
+}
+#flag_Dacia{      /* 23 */
+top: 130px;
+left: 655px;
+}
+
+/* Barony of Mejis 24-30 */
+
+#flag_Romagna{   /* 24 */
+top: 150px;
+left: 260px;
+}
+#flag_Macedonia{   /* 25 */
+top: 215px;
+left: 260px;
+}
+#flag_Syria{      /* 26 */
+top: 340px;
+left: 250px;
+}
+#flag_Pannonia{   /* 27 */
+top: 190px;
+left: 425px;
+}
+#flag_Apulia{   /* 28 */
+top: 240px;
+left: 430px;
+}
+#flag_Calabria{   /* 29 */
+top: 320px;
+left: 425px;
+}
+#flag_Tarroconensis{   /* 30 */
+top: 390px;
+left: 535px;
+}
+
+/* New Canaan 31-37 */
+
+#flag_Mauretania{   /* 31 */
+top: 180px;
+left: 500px;
+}
+#flag_Sardinia{   /* 32 */
+top: 240px;
+left: 510px;
+}
+#flag_Gallia{   /* 33*/
+top: 300px;
+left: 480px;
+}
+#flag_Pontus{   /* 34 */
+top: 130px;
+left: 583px;
+}
+#flag_Lusitania{   /* 35 */
+top: 290px;
+left: 575px;
+}
+#flag_Chad{       /* 36 */
+top: 325px;
+left: 625px;
+}
+#flag_Gaul{      /* 37 */
+top: 420px;
+left: 610px;
+}
+
+/* BorderLands 38-45 */
+
+#flag_Tingitana{   /* 38 */
+top: 225px;
+left: 645px;
+}
+#flag_Aquatania{   /* 39 */
+top: 215px;
+left: 760px;
+}
+#flag_Narnonensis{   /* 40 */
+top: 290px;
+left: 695px;
+}
+#flag_Epirus{   /* 41 */
+top: 380px;
+left: 765px;
+}
+#flag_Baetica{   /* 42 */
+top: 420px;
+left: 690px;
+}
+
+#flag_Pamphylia{   /* 43 */
+top: 460px;
+left: 770px;
+}
+#flag_Cilicia{   /* 44 */
+top: 490px;
+left: 680px;
+}
+#flag_Cyprisia{   /* 45 */
+top: 510px;
+left: 760px;
+}

@@ -1,0 +1,271 @@
+/***** DICE *****   */
+    #Soltatus_area{
+	position: relative;
+	right: 8px;
+	border: 2px solid black;
+	background-color: #192614;
+	color:white;
+	font-size: .9em;
+	padding: 3px;
+	width:100%;
+
+}
+.status_area {
+	position: relative;
+	right: 8px;
+	border: 2px solid black;
+	background-color: #192614;
+	font-size: .9em;
+	padding: 3px;
+	width:100%;
+}
+.dice_area {
+	position: absolute;
+	top: 3px;
+	left: 165px;
+	padding: 5px;
+	border: 2px solid #000000;
+	width: 135px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size: medium;
+	font-weight: bold;
+	background-color: #192614;
+	z-index: 3;
+}
+
+#dice_roll_d { 
+	width:20px;
+   	height:20px;
+   	background-color: #fff;
+   	color:black;
+   	border:1px solid black;
+   	text-align:center;
+   	vertical-align: middle;
+}
+    
+#dice_roll_a { 
+	width:20px;
+   	height:20px;
+   	background-color: red;
+   	color: black;
+   	border:1px solid black;
+   	text-align:center;
+   	vertical-align: middle;
+}
+
+.map {
+	/*position: absolute;*/
+	position:relative; 
+	color: #000000;
+	margin: 0 auto 0 auto;
+    padding:0;
+	width: 828px;
+	height: 576px;
+	z-index: 0;
+}
+.map li {
+    display:block;
+    width:55px;
+    height:38px;
+    position: absolute;
+    margin:0;
+    padding:0;
+}
+.map li a {
+    position:absolute;
+    top:0;left:0;
+    width:55px; 
+    height:38px;
+    margin:0;
+    padding:0;
+    display:block;
+}
+/*
+.mapunits {
+	position: relative;
+	color: #000000;
+	top: 0px;
+	left: 0px; 
+	width: 300px;
+	height: 400px;
+	z-index: 3;
+}*/ 
+.colorbar{
+	position: relative;
+	top: 25px;
+	left: 0px;
+}
+.colorbox{
+	position: relative;
+	left: 12px;
+	width: 100px;
+	height: 20px;
+	border: 1px solid #000000;
+	color: black;
+	font-weight: 600;
+}
+
+
+/*(the army counts)*/
+.map li a p{
+	position: absolute;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bolder;
+	text-align: center;
+    padding:0 2px 0 2px;
+    margin:0;
+	height: 12px;
+	border: 1px solid black;
+    color:black;
+	left: 27px;
+	bottom: -3px;
+    z-index:4;
+}
+
+/*individual country positions*/
+
+#Eta-01{   
+top: 80px;
+left: 44px;
+}
+#Eta-02{   
+top: 153px;
+left: 71px;
+}
+#Eta-03{
+top: 86px;
+left: 129px;
+}
+#Eta-04{
+top: 170px;
+left: 162px;
+}
+
+#Andro-01{
+top: 114px;
+left: 293px;
+}
+#Andro-02{
+top: 116px;
+left: 396px;
+}
+#Andro-03{
+top: 195px;
+left: 243px;
+}
+#Andro-04{
+top: 192px;
+left: 340px;
+}
+#Andro-05{
+top: 190px;
+left: 443px;
+}
+#Andro-06{
+top: 284px;
+left: 285px;
+}
+#Andro-07{
+top: 281px;
+left: 398px;
+}
+
+#RCW-01{
+top: 94px;
+left: 557px;
+}
+#RCW-02{
+top: 72px;
+left: 625px;
+}
+#RCW-03{
+top:109px;
+left: 701px;
+}
+#RCW-04{
+top: 160px;
+left: 520px;
+}
+#RCW-05{
+top: 167px;
+left: 624px;
+}
+#RCW-06{
+top: 175px;
+left: 731px;
+}
+#RCW-07{
+top: 233px;
+left: 548px;
+}
+#RCW-08{
+top: 265px;
+left: 624px;
+}
+#RCW-09{
+top: 248px;
+left: 708px;
+}
+
+#Crab-01{
+top: 340px;
+left: 50px;
+}
+#Crab-02{
+top: 355px;
+left: 154px;
+}
+#Crab-03{
+top: 403px;
+left: 111px;
+}
+#Crab-04{
+top: 425px;
+left: 46px;
+}
+#Crab-05{
+top: 456px;
+left: 174px;
+}
+
+#Sol-01{
+top: 348px;
+left: 360px;
+}
+#Sol-02{
+top: 343px;
+left: 446px;
+}
+#Sol-03{
+top: 410px;
+left: 320px;
+}
+#Sol-04{
+top: 407px;
+left: 487px;
+}
+#Sol-05{
+top: 479px;
+left: 364px;
+}
+#Sol-06{
+top: 473px;
+left: 452px;
+}
+#Kepler-01{
+top: 408px;
+left: 605px;
+}
+#Kepler-02{
+top: 376px;
+left: 679px;
+}
+#Kepler-03{
+top: 481px;
+left: 646px;
+}
+#Kepler-04{
+top: 442px;
+left: 733px;
+}

@@ -1,0 +1,128 @@
+/**************************************************
+
+	Style	NetRisk Installer
+	Version	2.0
+	Author	Paul Muldoon <ptmuldoon@gmail.com>
+
+**************************************************/
+
+/* ########## BODY ########## */
+
+body {
+	font-family: Verdana, Helvetica, Arial, Sans-Serif;
+	font-size: 11px;
+	background-color: #999;
+	background-image: url('images/bg.png');
+}
+
+#netrisk_root {
+	background-image: url('images/bg_div.png');
+	background-position: center center;
+	background-repeat: repeat-y;
+	width: 658px;
+	margin: auto;
+}
+
+#netrisk_head {
+	background-image: url('images/bg_div_t.png');
+	background-position: top center;
+	background-repeat: no-repeat;
+	padding: 20px 0px 0px 0px;
+}
+
+#netrisk_body {
+	margin: 0px;
+	padding: 10px 20px 0px 20px;
+	overflow: hidden;
+	clear: both;
+}
+
+#netrisk_foot {
+	background-image: url('images/bg_div_b.png');
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	height: 20px;
+	clear: both;
+}
+
+#netrisk_copy {
+	color: #999;
+	text-align: center;
+	padding: 20px 0px 4px 0px;
+	clear: both;
+}
+
+#netrisk_page_title {
+	text-align: center;
+}
+
+#netrisk_page_title a {
+	font-size: 2.4em;
+	font-weight: bold;
+	color: #369;
+}
+
+#netrisk_page_title a:hover {
+	text-decoration: none;
+}
+
+#netrisk_page_description {
+	text-align: center;
+}
+
+#netrisk_page_description  h2 {
+	font-weight: normal;
+	color: #999;
+}
+
+#netrisk_main {
+	margin: 0px 0px 0px 150px;
+	width: 455px;
+}
+
+/* ########## LINKS ########### */
+
+a {
+	color: #69C;
+	text-decoration: none;
+}
+
+
+#netrisk_copy a {
+	color: #999;
+	text-decoration: underline;
+}
+
+#netrisk_copy a:hover {
+	color: #000;
+}
+
+
+/* special case to keep ie's original fieldset */
+*>fieldset {
+	border: 1px #CCC solid;
+}
+
+
+input.netrisk_input {
+	margin: 2px;
+	border: 1px #CCC solid;
+	padding: 2px;
+}
+
+.netrisk_button {
+	color: #369;
+	font-weight: bold;
+}
+
+.netrisk_var {
+	float: left;
+	width: 120px;
+	padding: 4px;
+}
+
+.netrisk_val {
+	background-color: #F0F0F0;
+	margin: 0px 0px 2px 120px;
+	padding: 4px;
+}

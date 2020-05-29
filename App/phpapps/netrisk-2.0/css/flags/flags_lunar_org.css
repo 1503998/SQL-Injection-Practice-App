@@ -1,0 +1,158 @@
+.black .flag    {background-image:url("../images/flags/flag_black.gif");}
+.blue .flag    {background-image:url("../images/flags/flag_blue.gif");}
+.gold .flag    {background-image:url("../images/flags/flag_gold.gif");}
+.green .flag    {background-image:url("../images/flags/flag_green.gif");}
+.grey .flag    {background-image:url("../images/flags/flag_grey.gif");}
+.purple .flag    {background-image:url("../images/flags/flag_purple.gif");}
+.red .flag    {background-image:url("../images/flags/flag_red.gif");}
+.teal .flag    {background-image:url("../images/flags/flag_teal.gif");}
+.yellow .flag    {background-image:url("../images/flags/flag_yellow.gif");}
+
+
+/*individual country positions*/
+
+#flag_Eta-01{   
+top: 80px;
+left: 44px;
+}
+#flag_Eta-02{   
+top: 153px;
+left: 71px;
+}
+#flag_Eta-03{
+top: 86px;
+left: 129px;
+}
+#flag_Eta-04{
+top: 170px;
+left: 162px;
+}
+
+#flag_Andro-01{
+top: 114px;
+left: 293px;
+}
+#flag_Andro-02{
+top: 116px;
+left: 396px;
+}
+#flag_Andro-03{
+top: 195px;
+left: 243px;
+}
+#flag_Andro-04{
+top: 192px;
+left: 340px;
+}
+#flag_Andro-05{
+top: 190px;
+left: 443px;
+}
+#flag_Andro-06{
+top: 284px;
+left: 285px;
+}
+#flag_Andro-07{
+top: 281px;
+left: 398px;
+}
+
+#flag_RCW-01{
+top: 94px;
+left: 557px;
+}
+#flag_RCW-02{
+top: 72px;
+left: 625px;
+}
+#flag_RCW-03{
+top:109px;
+left: 701px;
+}
+#flag_RCW-04{
+top: 160px;
+left: 520px;
+}
+#flag_RCW-05{
+top: 167px;
+left: 624px;
+}
+#flag_RCW-06{
+top: 175px;
+left: 731px;
+}
+#flag_RCW-07{
+top: 233px;
+left: 548px;
+}
+#flag_RCW-08{
+top: 265px;
+left: 624px;
+}
+#flag_RCW-09{
+top: 248px;
+left: 708px;
+}
+
+#flag_Crab-01{
+top: 340px;
+left: 50px;
+}
+#flag_Crab-02{
+top: 355px;
+left: 154px;
+}
+#flag_Crab-03{
+top: 403px;
+left: 111px;
+}
+#flag_Crab-04{
+top: 425px;
+left: 46px;
+}
+#flag_Crab-05{
+top: 456px;
+left: 174px;
+}
+
+#flag_Sol-01{
+top: 348px;
+left: 360px;
+}
+#flag_Sol-02{
+top: 343px;
+left: 446px;
+}
+#flag_Sol-03{
+top: 410px;
+left: 320px;
+}
+#flag_Sol-04{
+top: 479px;
+left: 364px;
+}
+#flag_Sol-05{
+top: 473px;
+left: 452px;
+}
+#flag_Sol-06{
+top: 407px;
+left: 487px;
+}
+
+#flag_Kepler-01{
+top: 408px;
+left: 605px;
+}
+#flag_Kepler-02{
+top: 376px;
+left: 679px;
+}
+#flag_Kepler-03{
+top: 481px;
+left: 646px;
+}
+#flag_Kepler-04{
+top: 442px;
+left: 733px;
+}

@@ -1,0 +1,101 @@
+.red .infantry1    {background-image:url("../../images/units/3/infantry1_red.gif");}
+.red .infantry2    {background-image:url("../../images/units/3/infantry2_red.gif");}
+.red .infantry3    {background-image:url("../../images/units/3/infantry3_red.gif");}
+.red .infantry4    {background-image:url("../../images/units/3/infantry4_red.gif");}
+.red .cavalry5     {background-image:url("../../images/units/3/cavalry_red.gif");}
+.red .cavalry6     {background-image:url("../../images/units/3/cavalry6_red.gif");}
+.red .cavalry7     {background-image:url("../../images/units/3/cavalry7_red.gif");}
+.red .cavalry8     {background-image:url("../../images/units/3/cavalry8_red.gif");}
+.red .cavalry9     {background-image:url("../../images/units/3/cavalry9_red.gif");}
+.red .cannon       {background-image:url("../../images/units/3/cannon_red.gif");}
+.black .infantry1    {background-image:url("../../images/units/3/infantry1_black.gif");}
+.black .infantry2    {background-image:url("../../images/units/3/infantry2_black.gif");}
+.black .infantry3    {background-image:url("../../images/units/3/infantry3_black.gif");}
+.black .infantry4    {background-image:url("../../images/units/3/infantry4_black.gif");}
+.black .cavalry5     {background-image:url("../../images/units/3/cavalry_black.gif");}
+.black .cavalry6     {background-image:url("../../images/units/3/cavalry6_black.gif");}
+.black .cavalry7     {background-image:url("../../images/units/3/cavalry7_black.gif");}
+.black .cavalry8     {background-image:url("../../images/units/3/cavalry8_black.gif");}
+.black .cavalry9     {background-image:url("../../images/units/3/cavalry9_black.gif");}
+.black .cannon       {background-image:url("../../images/units/3/cannon_black.gif");}
+.grey .infantry1    {background-image:url("../../images/units/3/infantry1_grey.gif");}
+.grey .infantry2    {background-image:url("../../images/units/3/infantry2_grey.gif");}
+.grey .infantry3    {background-image:url("../../images/units/3/infantry3_grey.gif");}
+.grey .infantry4    {background-image:url("../../images/units/3/infantry4_grey.gif");}
+.grey .cavalry5     {background-image:url("../../images/units/3/cavalry_grey.gif");}
+.grey .cavalry6     {background-image:url("../../images/units/3/cavalry6_grey.gif");}
+.grey .cavalry7     {background-image:url("../../images/units/3/cavalry7_grey.gif");}
+.grey .cavalry8     {background-image:url("../../images/units/3/cavalry8_grey.gif");}
+.grey .cavalry9     {background-image:url("../../images/units/3/cavalry9_grey.gif");}
+.grey .cannon      {background-image:url("../../images/units/3/cannon_grey.gif");}
+.blue .infantry1    {background-image:url("../../images/units/3/infantry1_blue.gif");}
+.blue .infantry2    {background-image:url("../../images/units/3/infantry2_blue.gif");}
+.blue .infantry3    {background-image:url("../../images/units/3/infantry3_blue.gif");}
+.blue .infantry4    {background-image:url("../../images/units/3/infantry4_blue.gif");}
+.blue .cavalry5      {background-image:url("../../images/units/3/cavalry_blue.gif");}
+.blue .cavalry6     {background-image:url("../../images/units/3/cavalry6_blue.gif");}
+.blue .cavalry7     {background-image:url("../../images/units/3/cavalry7_blue.gif");}
+.blue .cavalry8     {background-image:url("../../images/units/3/cavalry8_blue.gif");}
+.blue .cavalry9     {background-image:url("../../images/units/3/cavalry9_blue.gif");}
+.blue .cannon       {background-image:url("../../images/units/3/cannon_blue.gif");}
+.green .infantry1    {background-image:url("../../images/units/3/infantry1_green.gif");}
+.green .infantry2    {background-image:url("../../images/units/3/infantry2_green.gif");}
+.green .infantry3    {background-image:url("../../images/units/3/infantry3_green.gif");}
+.green .infantry4    {background-image:url("../../images/units/3/infantry4_green.gif");}
+.green .cavalry5     {background-image:url("../../images/units/3/cavalry_green.gif");}
+.green .cavalry6     {background-image:url("../../images/units/3/cavalry6_green.gif");}
+.green .cavalry7     {background-image:url("../../images/units/3/cavalry7_green.gif");}
+.green .cavalry8     {background-image:url("../../images/units/3/cavalry8_green.gif");}
+.green .cavalry9     {background-image:url("../../images/units/3/cavalry9_green.gif");}
+.green .cannon      {background-image:url("../../images/units/3/cannon_green.gif");}
+.teal .infantry1    {background-image:url("../../images/units/3/infantry1_teal.gif");}
+.teal .infantry2    {background-image:url("../../images/units/3/infantry2_teal.gif");}
+.teal .infantry3    {background-image:url("../../images/units/3/infantry3_teal.gif");}
+.teal .infantry4    {background-image:url("../../images/units/3/infantry4_teal.gif");}
+.teal .cavalry5     {background-image:url("../../images/units/3/cavalry_teal.gif");}
+.teal .cavalry6     {background-image:url("../../images/units/3/cavalry6_teal.gif");}
+.teal .cavalry7     {background-image:url("../../images/units/3/cavalry7_teal.gif");}
+.teal .cavalry8     {background-image:url("../../images/units/3/cavalry8_teal.gif");}
+.teal .cavalry9     {background-image:url("../../images/units/3/cavalry9_teal.gif");}
+.teal .cannon      {background-image:url("../../images/units/3/cannon_teal.gif");}
+.gold .infantry1    {background-image:url("../../images/units/3/infantry1_gold.gif");}
+.gold .infantry2    {background-image:url("../../images/units/3/infantry2_gold.gif");}
+.gold .infantry3    {background-image:url("../../images/units/3/infantry3_gold.gif");}
+.gold .infantry4    {background-image:url("../../images/units/3/infantry4_gold.gif");}
+.gold .cavalry5     {background-image:url("../../images/units/3/cavalry_gold.gif");}
+.gold .cavalry6     {background-image:url("../../images/units/3/cavalry6_gold.gif");}
+.gold .cavalry7     {background-image:url("../../images/units/3/cavalry7_gold.gif");}
+.gold .cavalry8     {background-image:url("../../images/units/3/cavalry8_gold.gif");}
+.gold .cavalry9     {background-image:url("../../images/units/3/cavalry9_gold.gif");}
+.gold .cannon      {background-image:url("../../images/units/3/cannon_gold.gif");}
+.yellow .infantry1    {background-image:url("../../images/units/3/infantry1_yellow.gif");}
+.yellow .infantry2    {background-image:url("../../images/units/3/infantry2_yellow.gif");}
+.yellow .infantry3    {background-image:url("../../images/units/3/infantry3_yellow.gif");}
+.yellow .infantry4    {background-image:url("../../images/units/3/infantry4_yellow.gif");}
+.yellow .cavalry5      {background-image:url("../../images/units/3/cavalry_yellow.gif");}
+.yellow .cavalry6     {background-image:url("../../images/units/3/cavalry6_yellow.gif");}
+.yellow .cavalry7     {background-image:url("../../images/units/3/cavalry7_yellow.gif");}
+.yellow .cavalry8     {background-image:url("../../images/units/3/cavalry8_yellow.gif");}
+.yellow .cavalry9     {background-image:url("../../images/units/3/cavalry9_yellow.gif");}
+.yellow .cannon      {background-image:url("../../images/units/3/cannon_yellow.gif");}
+
+
+/*backgrounds for the army counts*/
+.army{
+	position: absolute;
+	padding:0 2px 0 2px;
+    margin:0;
+	top:25px;
+	border: 1px solid black;
+    color:black;
+    z-index:4;
+}
+
+.unit_red    {background-color: #CC3300;}
+.unit_black  {background-color: #888888;}
+.unit_grey   {background-color: #CCCCCC;}
+.unit_blue   {background-color: #6677FF;}
+.unit_green  {background-color: #00CC33;}
+.unit_teal   {background-color: #33CCCC;}
+.unit_gold   {background-color: #FFCC00;}
+.unit_yellow {background-color: #FFFF66;}     
