@@ -1,0 +1,46 @@
+diff -aur old//game_base.cpp compare//game_base.cpp
+--- old//game_base.cpp	2011-01-07 09:26:35.494060000 -0600
++++ compare//game_base.cpp	2011-01-07 09:25:27.864060002 -0600
+@@ -132,6 +132,7 @@
+ 	m_AutoSave = m_GHost->m_AutoSave;
+ 	m_MatchMaking = false;
+ 	m_LocalAdminMessages = m_GHost->m_LocalAdminMessages;
++	m_DatabaseID = 0;
+ 
+ 	if( m_SaveGame )
+ 	{
+@@ -233,7 +234,11 @@
+ 			SecString.insert( 0, "0" );
+ 
+ 		m_Replay->BuildReplay( m_GameName, m_StatString, m_GHost->m_ReplayWar3Version, m_GHost->m_ReplayBuildNumber );
+-		m_Replay->Save( m_GHost->m_TFT, m_GHost->m_ReplayPath + UTIL_FileSafeName( "GHost++ " + string( Time ) + " " + m_GameName + " (" + MinString + "m" + SecString + "s).w3g" ) );
++	    if(m_DatabaseID == 0) {
++		    m_Replay->Save( m_GHost->m_TFT, m_GHost->m_ReplayPath + UTIL_FileSafeName( "GHost++ " + string( Time ) + " " + m_GameName + " (" + MinString + "m" + SecString + "s).w3g" ) );
++		} else {
++		    m_Replay->Save( m_GHost->m_TFT, m_GHost->m_ReplayPath + UTIL_FileSafeName( "GHost++ " + UTIL_ToString( m_DatabaseID ) + ".w3g" ) );
++		}
+ 	}
+ 
+ 	delete m_Socket;
+diff -aur old//game_base.h compare//game_base.h
+--- old//game_base.h	2011-01-07 09:26:38.434059999 -0600
++++ compare//game_base.h	2011-01-07 09:25:30.854059999 -0600
+@@ -124,6 +124,7 @@
+ 	bool m_AutoSave;								// if we should auto save the game before someone disconnects
+ 	bool m_MatchMaking;								// if matchmaking mode is enabled
+ 	bool m_LocalAdminMessages;						// if local admin messages should be relayed or not
++	uint32_t m_DatabaseID;                          // the ID number from the database, which we'll use to save replay
+ 
+ public:
+ 	CBaseGame( CGHost *nGHost, CMap *nMap, CSaveGame *nSaveGame, uint16_t nHostPort, unsigned char nGameState, string nGameName, string nOwnerName, string nCreatorName, string nCreatorServer );
+diff -aur old//game.cpp compare//game.cpp
+--- old//game.cpp	2011-01-07 09:26:26.184060001 -0600
++++ compare//game.cpp	2011-01-07 09:25:18.644060002 -0600
+@@ -85,6 +85,7 @@
+ {
+ 	if( m_CallableGameAdd && m_CallableGameAdd->GetReady( ) )
+ 	{
++	    m_DatabaseID = m_CallableGameAdd->GetResult();
+ 		if( m_CallableGameAdd->GetResult( ) > 0 )
+ 		{
+ 			CONSOLE_Print( "[GAME: " + m_GameName + "] saving player/stats data to

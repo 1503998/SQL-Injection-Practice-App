@@ -1,0 +1,519 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #FFF;
+	color: #000;
+	font: .875em Helvetica, Arial, sans-serif;
+	height: 100%;
+	line-height: 1.5em;
+	text-align: center;
+    height: 700px;
+	/*
+	background-image: url('./img/bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment:fixed;
+	*/
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+	color: #111;
+	font-weight: normal;
+}
+
+h1 {
+	color: #638290;
+	font-size: 2.2em;
+}
+
+h2 {
+	color: #5B78AC;
+	font-size: 1.3em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+a {
+/*	color: #015385;*/
+	color: #0169D3;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0086E4;
+/*	text-decoration: underline;*/
+	text-decoration: none;
+}
+
+table {
+	border: none;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+/**
+ * Note: CSS3 (sorry, no IE support)
+ ***************************************/
+tr:nth-child(odd) {
+	background-color: #ECECEC;
+}
+
+tr:nth-child(even) {
+	background-color: #ECECEC;
+}
+
+th {
+	background: #C9C9C9 url('img/caption_top.gif') 0 0 repeat-x;
+	border: 0;
+	color: #000;
+	font-size: 12px;
+	font-weight: bold;
+	height: 28px;
+	text-align: left;
+}
+
+th a {
+	color: #004994;
+	text-decoration: none;
+}
+
+th a:hover {
+	color: #004994;
+	text-decoration: none;
+}
+
+td {
+	height: 22px;
+}
+
+input[type=text], textarea {
+	background-color: #F3F3F3;
+	border: 1px solid #D1D1D1;
+	color: #6A6A6A;
+	padding: 0 2px;
+}
+
+input[type=text]:hover, textarea:hover {
+	border: 1px solid #900;
+}
+
+
+input[type=text]:focus, textarea:focus {
+	border: 1px solid #005188;
+	outline-style: none;
+}
+
+#wrapper {
+	height: auto !important;
+	width: 100%;
+}
+
+	#header {
+		background: url('img/header.jpg') 50% 0 no-repeat;
+		border: 1px solid #FFF;
+		height: 180px;
+		text-align: center;
+	}
+.header {
+height: 34px;
+}
+	ul#nav {
+		background-color: #E2E2E2;
+		height: 26px;
+		list-style: none;
+	}
+
+	ul#nav li {
+		display: inline;
+	}
+
+/**/
+	.tableNews {
+		color: #000;
+		margin: 0 auto;
+		padding: 8pt 0 8pt 8pt;
+		width: 95%;
+	}
+
+		.NewsText {
+			padding: 8pt 120pt 8pt 8pt;
+			text-align: left;
+			width: 95%;
+		}
+
+
+
+
+
+
+.row:hover {
+	/*background-color: #20303C;*/
+	background-color: #CBD3E0;
+	color: #434343;
+}
+
+
+
+
+.tableA {
+	margin: 8px;
+	width: 95%;
+}
+
+.tableB {
+	height: 24px;
+}
+
+.tableC {
+	padding-left: 22px;
+	width: 95%;
+}
+
+.tableD {
+	padding-bottom: 1pt;
+	padding-left: 4pt;
+	padding-top: 1pt;
+}
+
+.tableItem {
+	margin: 8px;
+	width: 500px;
+}
+
+.ItemInfo {
+	padding-bottom: 8pt;
+	padding-left: 8pt;
+	padding-top: 8pt;
+	width: 95%;
+}
+
+
+.tableHeroPageTop {width:690px;}
+.tableHeroPage {margin-top:1px;width:96%;border: 0px solid #000;}
+.tableHeroPageTopCell {text-align:left;padding:12px;}
+.tableHeroPage {margin-top:28px;width:96%;border: 0px solid #000;}
+
+
+.tableUserRow { margin-top:4px; margin-bottom:4px; margin-left:4px; }
+.tableUserRowHero { padding-left:8px; }
+.bansRow { padding-right:4px; width:48px; }
+.topUserRow { padding-left:4px; text-align: left;}
+
+
+
+
+.padLeft{padding-left:12px;}
+
+.padRight{padding-right:12px;}
+
+.padAll{padding:4px;}
+
+.tableSearchH {
+width:95%;margin-top:24px; margin-bottom:12px;
+}
+
+.tableSearchR{
+padding-left:4px; height:24px;
+}
+
+.inputSearch{
+height:24px;
+}
+
+.inputSearchButtons{
+height:32px;padding-left:4px;
+}
+
+.leftReason {
+font-size:10px;
+}
+
+.Search{
+padding-left:4px; height:24px;
+}
+
+
+
+
+
+tr.sentinelRow {
+background-image: url('./img/sentinel_row.gif');
+background-color: #000;
+}
+
+tr.scourgeRow {
+background-image: url('./img/scourge_row.gif');
+background-color: #000;
+
+}
+
+.sentinelCol{
+color: #F5EDED;
+}
+
+.scourgeCol{
+color: #F1FFEC;
+}
+
+
+
+tr.scourgeRow {
+background-color: #EEF5ED;
+border:1px solid #8CA5C6
+}
+
+/* Begin font styles */
+
+
+.alignleft {
+float: left;
+font-size: 12px;
+}
+
+.alignright {
+float: right;
+font-size: 12px;
+}
+
+.pageButtons{
+   cursor: pointer;
+   margin: 0;
+   font-family: Verdana,Arial,Helvetica,sans-serif;
+   font-weight: bold;
+   text-align: left;
+   font-size: 12px;
+   padding: 1px;
+   background-color:transparent;
+   color: #000;
+   border: 0px solid #999;
+   -moz-border-radius: 6px;
+   -webkit-border-radius: 6px;
+}
+
+.pagination {
+	padding: 0px;
+	margin: 0px;
+	text-align:right;
+}
+
+.pagination a {
+	padding: 2px 3px 2px 3px;
+	margin: 1px;
+	border: 1px solid #AAAADD;
+	text-decoration: none; /* no underline */
+	color: #000;
+
+}
+.pagination a:hover, .pagination a:active {
+	border: 1px solid #105289;
+
+	color: #FFAA00;
+}
+.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+		border: 1px solid #105289;
+		
+		font-weight: bold;
+		background-color: #105289;
+		color: #FFF;
+	}
+	.pagination span.disabled {
+		padding: 2px 5px 2px 5px;
+		margin: 2px;
+		border: 1px solid #EEE;
+
+		color: #DDD;
+	}
+	
+td.pagination {height: 24px;}
+
+.GamesSentinel {color:#CF0002;}
+.GamesScourge {color:#00CF1D;}
+.GamesDraw {color:#E7BE00;}
+
+/* Replay Colors */
+.sentinel {text-align: left; color:#8D2323;}
+.scourge   {text-align: left; color:#04C500;}
+
+.all  {text-align:left; color:#DCDCDC;}
+
+.red       {color: #DD0000;}
+.blue     {color: #004EFF;}
+.teal     {color: #00EEEE;}
+.purple  {color: #7711AA;}
+.yellow  {color: #FFFF00;}
+.orange  {color: #FF9900 ;}
+.dark-green  {color: #00751E;}
+.pink     {color: #FF66CC;}
+.gray {color: #888888;}
+.light-blue  {color: #55BBEE;}
+.darkgreen  {color: #006F3F;}
+.brown  {color: #6F3F00;}
+.observer  {color: #FFFFFF;}
+.GameSystem {color: #FFF6B9; text-align: left;}
+
+a.banned {
+	color: #E56879;
+}
+
+.won {
+	color: #86E573;
+}
+
+.lost {
+	color: #E56879;
+}
+
+.draw {
+	color: #EBEB7D;
+}
+
+img.alpha {
+	-moz-opacity: .1;
+	filter: alpha('opacity=10');
+	opacity: .1;
+}
+
+.Achieved {
+	color: #004994;
+}
+
+.NotAchieved {
+	color: #8C8C8C;
+}
+
+.PositivePoints {
+	color: #0DB900;
+}
+
+.NegativePoints {
+	color: #B00;
+}
+
+.DrawGame {
+	color: #FFE327;
+}
+
+.DisconnectPoints {
+	color: #FF0006;
+}
+
+#dhtmltooltip {
+	background-color: #331309;
+	border: 1px solid #999;
+	color: #FA0;
+	filter: progid:DXImageTransform.Microsoft.Shadow('color=gray, direction=135');
+	left: -300px;
+	padding: 8px;
+	position: absolute;
+	visibility: hidden;
+	width: 150px;
+	z-index: 100;
+}
+
+#dhtmlpointer {
+	left: -300px;
+	position: absolute;
+	visibility: hidden;
+	z-index: 101;
+}
+
+
+.menuButtons, .inputButton { display: inline-block; padding: 7px 9px; font-size: 12px; line-height:1; color: #3C3C3D; text-shadow: 1px 1px 0 #FFFFFF; background: #ECECEC url('img/buttons_backgrounds.png') 0 0 no-repeat; white-space: nowrap; overflow: visible; cursor: pointer; text-decoration: none; border: 1px solid #CACACA; -webkit-border-radius: 2px; -moz-border-radius: 2px; -webkit-background-clip: padding-box; border-radius: 2px; outline: none; position: relative; zoom: 1; *display: inline; }
+.menuButtons.primary { font-weight: bold }
+.menuButtons:hover, .inputButton:hover { color: #FFFFFF; border-color: #388AD4; text-decoration: none; text-shadow: -1px -1px 0 rgba(0,0,0,0.3); background-position: 0 -40px; background-color: #2D7DC5; }
+.menuButtons:active,
+.menuButtons.active { background-position: 0 -81px; border-color: #347BBA; background-color: #0F5EA2; color: #FFFFFF; text-shadow: none; }
+.menuButtons:active { top: 1px }
+.menuButtons.negative:hover { color: #FFFFFF; background-position: 0 -121px; background-color: #D84743; border-color: #911D1B; }
+.menuButtons.small {width: 64px; height: 23px; margin-left: 162px; padding: 1px 1px;}
+.menuButtons.show {height: 23px; padding: 4px;}
+.menuButtons.tiny {height: 20px; padding: 2px;}
+.menuButtons.login {margin-left: 150px; padding:5px 10px;}
+
+.menuButtons.friend {float:right; padding:5px 10px; margin-right: 30px; margin-top: 10px;}
+
+.menuButtons.negative:active,
+.menuButtons.negative.active { background-position: 0 -161px; background-color: #A5211E; border-color: #911D1B; }
+.menuButtons.pill { -webkit-border-radius: 19px; -moz-border-radius: 19px; border-radius: 19px; padding: 6px 12px; }
+.menuButtons.left { -webkit-border-bottom-right-radius: 0px; -webkit-border-top-right-radius: 0px; -moz-border-radius-bottomright: 0px; -moz-border-radius-topright: 0px; border-bottom-right-radius: 0px; border-top-right-radius: 0px; margin-right: 0px; }
+.menuButtons.middle { margin-right: 0px; margin-left: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; border-left: none; }
+.menuButtons.right { -webkit-border-bottom-left-radius: 0px; -webkit-border-top-left-radius: 0px; -moz-border-radius-bottomleft: 0px; -moz-border-radius-topleft: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; margin-left: 0px; border-left: none;}
+.menuButtons.left:active,
+.menuButtons.middle:active,
+.menuButtons.right:active { top: 0px }
+.menuButtons.big { font-size: 16px; padding: 7px 16px; }
+.menuButtons span.icon { display: inline-block; width: 14px; height: 12px; margin: auto 7px auto auto; position: relative; top: 1px; background-image: url('img/buttons_icons.png'); background-repeat: no-repeat; }
+.big.menuButtons span.icon { top: 0px }
+.menuButtons span.icon.book { background-position: 0 0 }
+.menuButtons:hover span.icon.book { background-position: 0 -15px }
+.menuButtons span.icon.calendar { background-position: 0 -30px }
+.menuButtons:hover span.icon.calendar { background-position: 0 -45px }
+.menuButtons span.icon.chat { background-position: 0 -60px }
+.menuButtons:hover span.icon.chat { background-position: 0 -75px }
+.menuButtons span.icon.check { background-position: 0 -90px }
+.menuButtons:hover span.icon.check { background-position: 0 -103px }
+.menuButtons span.icon.clock { background-position: 0 -116px }
+.menuButtons:hover span.icon.clock { background-position: 0 -131px }
+.menuButtons span.icon.cog { background-position: 0 -146px }
+.menuButtons:hover span.icon.cog { background-position: 0 -161px }
+.menuButtons span.icon.comment { background-position: 0 -176px }
+.menuButtons:hover span.icon.comment { background-position: 0 -190px }
+.menuButtons span.icon.cross { background-position: 0 -204px }
+.menuButtons:hover span.icon.cross { background-position: 0 -219px }
+.menuButtons span.icon.downarrow { background-position: 0 -234px }
+.menuButtons:hover span.icon.downarrow { background-position: 0 -249px }
+.menuButtons span.icon.fork { background-position: 0 -264px }
+.menuButtons:hover span.icon.fork { background-position: 0 -279px }
+.menuButtons span.icon.heart { background-position: 0 -294px }
+.menuButtons:hover span.icon.heart { background-position: 0 -308px }
+.menuButtons span.icon.home { background-position: 0 -322px }
+.menuButtons:hover span.icon.home { background-position: 0 -337px }
+.menuButtons span.icon.key { background-position: 0 -352px }
+.menuButtons:hover span.icon.key { background-position: 0 -367px }
+.menuButtons span.icon.leftarrow { background-position: 0 -382px }
+.menuButtons:hover span.icon.leftarrow { background-position: 0 -397px }
+.menuButtons span.icon.lock { background-position: 0 -412px }
+.menuButtons:hover span.icon.lock { background-position: 0 -427px }
+.menuButtons span.icon.loop { background-position: 0 -442px }
+.menuButtons:hover span.icon.loop { background-position: 0 -457px }
+.menuButtons span.icon.magnifier { background-position: 0 -472px }
+.menuButtons:hover span.icon.magnifier { background-position: 0 -487px }
+.menuButtons span.icon.mail { background-position: 0 -502px }
+.menuButtons:hover span.icon.mail { background-position: 0 -514px }
+.menuButtons span.icon.move { background-position: 0 -526px }
+.menuButtons:hover span.icon.move { background-position: 0 -541px }
+.menuButtons span.icon.pen { background-position: 0 -556px }
+.menuButtons:hover span.icon.pen { background-position: 0 -571px }
+.menuButtons span.icon.pin { background-position: 0 -586px }
+.menuButtons:hover span.icon.pin { background-position: 0 -601px }
+.menuButtons span.icon.plus { background-position: 0 -616px }
+.menuButtons:hover span.icon.plus { background-position: 0 -631px }
+.menuButtons span.icon.reload { background-position: 0 -646px }
+.menuButtons:hover span.icon.reload { background-position: 0 -660px }
+.menuButtons span.icon.rightarrow { background-position: 0 -674px }
+.menuButtons:hover span.icon.rightarrow { background-position: 0 -689px }
+.menuButtons span.icon.rss { background-position: 0 -704px }
+.menuButtons:hover span.icon.rss { background-position: 0 -719px }
+.menuButtons span.icon.tag { background-position: 0 -734px }
+.menuButtons:hover span.icon.tag { background-position: 0 -749px }
+.menuButtons span.icon.trash { background-position: 0 -764px }
+.menuButtons:hover span.icon.trash { background-position: 0 -779px }
+.menuButtons span.icon.unlock { background-position: 0 -794px }
+.menuButtons:hover span.icon.unlock { background-position: 0 -809px }
+.menuButtons span.icon.uparrow { background-position: 0 -824px }
+.menuButtons:hover span.icon.uparrow { background-position: 0 -839px }
+.menuButtons span.icon.user { background-position: 0 -854px }
+.menuButtons:hover span.icon.user { background-position: 0 -869px }

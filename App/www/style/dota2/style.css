@@ -1,0 +1,486 @@
+@charset "UTF-8";
+/*-----------------------------------------------
+Theme Name:  PlayDota
+Description: PlayDota is a theme for Dota OpenStats http://openstats.iz.rs/
+Author:     ViperNight
+Version: 1.0
+Revision:   December 21, 2010  4:15 PM
+------------------------------------------------*/
+
+/* Unused set
+background-color: #447099;
+color: #99C5FD;
+
+font: 'Helvetica Neue';
+
+-moz-box-shadow: 0 4px 10px -moz-rgba(0, 0, 0, .5);
+-webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, .5);
+box-shadow: 0 4px 10px rgba(0, 0, 0, .5);
+*filter: progid:DXImageTransform.Microsoft.Shadow(color='#999999', Direction=180, Strength=4);
+
+http://www.catswhocode.com/blog/10-ways-to-make-internet-explorer-act-like-a-modern-browser
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #000;
+	color: #B9B9B9;
+	font: .875em Helvetica, Arial, sans-serif;
+	height: 100%;
+	line-height: 1.5em;
+	text-align: center;
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+	color: #111;
+	font-weight: normal;
+}
+
+h1 {
+	color: #638290;
+	font-size: 2.2em;
+}
+
+h2 {
+	color: #5B78AC;
+	font-size: 1.3em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+a {
+/*	color: #015385;*/
+	color: #0182D3;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0182D3;
+/*	text-decoration: underline;*/
+	text-decoration: none;
+}
+
+table {
+	border: 1px solid #212121;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+/**
+ * Note: CSS3 (sorry, no IE support)
+ ***************************************/
+tr:nth-child(odd) {
+	background-color: #171717;
+}
+
+tr:nth-child(even) {
+	background-color: #0D0D0D;
+}
+
+th {
+	background: #000 url('img/caption_top.gif') 0 0 repeat-x;
+	border: 0;
+	color: #EEE;
+	font-size: 12px;
+	font-weight: bold;
+	height: 28px;
+	text-align: left;
+}
+
+th a {
+	color: #FF9000;
+	text-decoration: none;
+}
+
+th a:hover {
+	color: #FF9000;
+	text-decoration: none;
+}
+
+td {
+	height: 22px;
+}
+
+input[type=text], textarea {
+	background-color: #151515;
+	border: 1px solid #2E2E2E;
+	color: #DDD;
+	padding: 0 2px;
+}
+
+input[type=text]:hover, textarea:hover {
+	border: 1px solid #900;
+}
+
+
+input[type=text]:focus, textarea:focus {
+	border: 1px solid #005188;
+	outline-style: none;
+}
+
+#wrapper {
+	height: auto !important;
+	width: 100%;
+}
+
+	#header {
+		background: url('img/header.jpg') 50% 0 no-repeat;
+		border: 1px solid #000;
+		height: 180px;
+		text-align: center;
+	}
+
+	ul#nav {
+		background-color: #171717;
+		height: 26px;
+		list-style: none;
+	}
+
+	ul#nav li {
+		display: inline;
+	}
+
+		.menuButtons {
+			-moz-border-radius: 6px;
+			-webkit-border-radius: 6px;
+			background: #F8F8F8 url('img/button_bg.png') 0 50% repeat-x;
+			border: 1px solid #999;
+			border-radius: 6px;
+			color: #FFF;
+			cursor: pointer;
+			font: 11px 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+			margin-left: 2px;
+			padding: 2px 5px 5px 5px;
+		}
+
+		.menuButtons:hover {
+			background-color: #6079AB;
+			background: #F8F8F8 url('img/button_bg2.png') 0 50% repeat-x;
+			border-color: #7C8CB2;
+			color: #D9E6FE;
+			cursor: pointer;
+		}
+
+/**/
+	.tableNews {
+		color: #B9B9B9;
+		margin: 0 auto;
+		padding: 8pt 0 8pt 8pt;
+		width: 95%;
+	}
+
+		.NewsText {
+			padding: 8pt 120pt 8pt 8pt;
+			text-align: left;
+			width: 95%;
+		}
+
+
+
+
+
+
+.row:hover {
+	/*background-color: #20303C;*/
+	background-color: #1E2429;
+	color: #FFF;
+}
+
+
+
+
+.tableA {
+	margin: 8px;
+	width: 95%;
+}
+
+.tableB {
+	height: 24px;
+}
+
+.tableC {
+	padding-left: 22px;
+	width: 95%;
+}
+
+.tableD {
+	padding-bottom: 1pt;
+	padding-left: 4pt;
+	padding-top: 1pt;
+}
+
+.tableItem {
+	margin: 8px;
+	width: 500px;
+}
+
+.ItemInfo {
+	padding-bottom: 8pt;
+	padding-left: 8pt;
+	padding-top: 8pt;
+	width: 95%;
+}
+
+
+.tableHeroPageTop {width:690px;}
+.tableHeroPage {margin-top:1px;width:96%;border: 0px solid #000;}
+.tableHeroPageTopCell {text-align:left;padding:12px;}
+.tableHeroPage {margin-top:28px;width:96%;border: 0px solid #000;}
+
+
+.tableUserRow { margin-top:4px; margin-bottom:4px; margin-left:4px; }
+.tableUserRowHero { padding-left:8px; }
+.bansRow { padding-right:4px; width:48px; }
+.topUserRow { padding-left:4px; text-align: left;}
+
+
+
+
+.padLeft{padding-left:12px;}
+
+.padRight{padding-right:12px;}
+
+.padAll{padding:4px;}
+
+.tableSearchH {
+width:95%;margin-top:24px; margin-bottom:12px;
+}
+
+.tableSearchR{
+padding-left:4px; height:24px;
+}
+
+.inputSearch{
+height:24px;
+}
+
+.inputSearchButtons{
+height:32px;padding-left:4px;
+}
+
+.leftReason {
+font-size:10px;
+}
+
+.Search{
+padding-left:4px; height:24px;
+}
+
+
+
+
+
+tr.sentinelRow {
+background-image: url('./img/sentinel_row.gif');
+background-color: #000;
+}
+
+tr.scourgeRow {
+background-image: url('./img/scourge_row.gif');
+background-color: #000;
+
+}
+
+.sentinelCol{
+color: #F5EDED;
+}
+
+.scourgeCol{
+color: #F1FFEC;
+}
+
+
+
+tr.scourgeRow {
+background-color: #EEF5ED;
+border:1px solid #8CA5C6
+}
+
+/* Begin font styles */
+
+
+.alignleft {
+float: left;
+font-size: 12px;
+}
+
+.alignright {
+float: right;
+font-size: 12px;
+}
+
+
+
+.inputButton {
+   cursor: pointer;
+   margin: 0;
+   font-family: 'lucida grande','Lucida Sans Unicode', Tahoma, sans-serif;
+   font-size: 11px;
+   padding: 1px;
+   background: url('./img/button_bg.png') repeat-x center left #f8f8f8;
+   color: #FFAA00;
+   border: 1px solid #999;
+   -moz-border-radius: 6px;
+   -webkit-border-radius: 6px;
+}
+.inputButton:hover{
+background: url('./img/button_bg2.png') repeat-x center left #f8f8f8;
+color:red;
+cursor: #D10303;
+}
+
+.pageButtons{
+   cursor: pointer;
+   margin: 0;
+   font-family: Verdana,Arial,Helvetica,sans-serif;
+   font-weight: bold;
+   text-align: left;
+   font-size: 12px;
+   padding: 1px;
+   background-color:transparent;
+   color: #FFAA00;
+   border: 0px solid #999;
+   -moz-border-radius: 6px;
+   -webkit-border-radius: 6px;
+}
+
+.pagination {
+	padding: 0px;
+	margin: 0px;
+	text-align:right;
+}
+
+.pagination a {
+	padding: 2px 3px 2px 3px;
+	margin: 1px;
+	border: 1px solid #AAAADD;
+	text-decoration: none; /* no underline */
+	color: #fff;
+
+}
+.pagination a:hover, .pagination a:active {
+	border: 1px solid #105289;
+
+	color: #FFAA00;
+}
+.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+		border: 1px solid #105289;
+		
+		font-weight: bold;
+		background-color: #105289;
+		color: #FFF;
+	}
+	.pagination span.disabled {
+		padding: 2px 5px 2px 5px;
+		margin: 2px;
+		border: 1px solid #EEE;
+
+		color: #DDD;
+	}
+	
+td.pagination {height: 24px;}
+
+.GamesSentinel {color:#CF0002;}
+.GamesScourge {color:#00CF1D;}
+.GamesDraw {color:#E7BE00;}
+
+/* Replay Colors */
+.sentinel {text-align: left; color:#8D2323;}
+.scourge   {text-align: left; color:#04C500;}
+
+.all  {text-align:left; color:#DCDCDC;}
+
+.red       {color: #DD0000;}
+.blue     {color: #004EFF;}
+.teal     {color: #00EEEE;}
+.purple  {color: #7711AA;}
+.yellow  {color: #FFFF00;}
+.orange  {color: #FF9900 ;}
+.dark-green  {color: #00751E;}
+.pink     {color: #FF66CC;}
+.gray {color: #888888;}
+.light-blue  {color: #55BBEE;}
+.darkgreen  {color: #006F3F;}
+.brown  {color: #6F3F00;}
+.observer  {color: #FFFFFF;}
+.GameSystem {color: #FFF6B9; text-align: left;}
+
+a.banned {
+	color: #E56879;
+}
+
+.won {
+	color: #86E573;
+}
+
+.lost {
+	color: #E56879;
+}
+
+.draw {
+	color: #EBEB7D;
+}
+
+img.alpha {
+	-moz-opacity: .1;
+	filter: alpha('opacity=10');
+	opacity: .1;
+}
+
+.Achieved {
+	color: #FCFF00;
+}
+
+.NotAchieved {
+	color: #6F6F6F;
+}
+
+.PositivePoints {
+	color: #0DB900;
+}
+
+.NegativePoints {
+	color: #B00;
+}
+
+.DrawGame {
+	color: #FFE327;
+}
+
+.DisconnectPoints {
+	color: #FF0006;
+}
+
+#dhtmltooltip {
+	background-color: #331309;
+	border: 1px solid #999;
+	color: #FA0;
+	filter: progid:DXImageTransform.Microsoft.Shadow('color=gray, direction=135');
+	left: -300px;
+	padding: 8px;
+	position: absolute;
+	visibility: hidden;
+	width: 150px;
+	z-index: 100;
+}
+
+#dhtmlpointer {
+	left: -300px;
+	position: absolute;
+	visibility: hidden;
+	z-index: 101;
+}
