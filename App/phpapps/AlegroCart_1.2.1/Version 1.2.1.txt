@@ -1,0 +1,35 @@
+Alegro Cart version 1.2 (Released under GNU GENERAL PUBLIC LICENSE)
+
+This version modifies the catalog template structure.
+	The template now includes the content folder for main controller .tpl files, the module folder for module .tpl files, and
+the shared fored for shared .tpl files.
+	New is the styles folder. This folder contains the css folder and the image folder the were previously in the template folder.
+	
+	The template and styles folders have separate settings in admin allowing you to chose a specific template and a different style.
+	
+MODEL
+The complete catalog has been converted to a true MVC design. You will find models located in folders in the catalog/model folder.
+All controllers in the catalog/controller and catalog/extension/module have been converted to use model database access.
+
+New Security Features
+
+The admin login now has serialized input form that only allows login from that form to prevent CSFR and brute force attacks.
+If a request is made that does now validate from the on site form, a validation error occurs. Login requests are limited to 
+5 attempts before being redirected from login page.
+
+Sensitive data is protected by serizlizing input forms to ensure the form is submited from the local site. This is enabled for all user 
+data in admin and catalog.
+
+There are many display modifications in the catalog system, most notably in the customer account files and product reviews.
+
+Version 1.2.1
+
+The styles folder Now includes a new folder, colors. This folder contains a color.css file for each color
+style available.
+In the image folder there are coresponding color folders that contain images to reflect the color chosen.
+In admin/setting you now have a choice of which template, style and color.
+This reduces the amount of duplicated code and makes things like color change available with one setting.
+CSS is cleaned up to allow easier changes and modifications by the developer.
+
+SEO is completed to now include the review pages.
+
