@@ -39,7 +39,8 @@ ECHO g - Alegro 1.2.1
 ECHO h - Devana (Game) 1.6.6
 ECHO i - Scratcher
 ECHO j - DotA Open Stats 1.3.9 
-ECHO k - EXIT
+ECHO k - Evilboard 0.1a
+ECHO l - EXIT
 ECHO.
 
 CHOICE /C abcdefghijklx /N /M "Choose the PHP app that you want to install under UniServerZ or press x to EXIT."
@@ -53,7 +54,8 @@ IF ERRORLEVEL 7 SET M=AlegroCart_1.2.1 & SET d=null
 IF ERRORLEVEL 8 SET M=devana & SET d=null
 IF ERRORLEVEL 9 SET M=scratcher & SET d=null
 IF ERRORLEVEL 10 SET M=DotAOpenStats & SET d=null
-IF ERRORLEVEL 11 GOTO:EOF
+IF ERRORLEVEL 11 SET M=EvilBoard & SET d=null
+IF ERRORLEVEL 12 GOTO:EOF
 
 
 

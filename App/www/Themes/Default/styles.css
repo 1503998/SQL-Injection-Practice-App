@@ -1,0 +1,40 @@
+     body {color : #ffffff;background-color : #000;}
+    .eb_header {border : 1px solid #a6a6a6;background-color : #082749;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;color : #ffffff; background-image: url(Images/eb_header.gif);}
+    .eb_logo {border : 1px solid #a6a6a6;background-color : #082749;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-bottom-width : 0;color : #ffffff;background-image : url(Images/logo-long.gif); height: 100px; }
+    .eb_header2 {background-image: url(Images/eb_header.gif); border : 1px solid #a6a6a6;background-color : #082749;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-left : 0;color : #ffffff;}
+    .eb_header3 {background-image: url(Images/eb_header.gif) no-repeat-x ; border : 1px solid #a6a6a6;background-color : #082749;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-bottom-width : 0;color : #ffffff;}
+    .eb_footer_orgin {border : 1px solid #a6a6a6;border-top-width : 0;background-color : #1d1d1d;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;padding : 5px;}
+    a:link {color : #0099ff;text-decoration : none;}
+    a:visited {color : #0099ff;text-decoration : none;}
+    a:hover {color : #fff;text-decoration : none;}
+    .eb_txt {font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_menu1 {background-image : url(Images/menustuff.gif);font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;color : #ffffff;border : 1px solid #a6a6a6;border-top-width : 0;}
+    .eb_menu2 {background-image : url(Images/menustuff.gif);font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;color : #ffffff;border : 1px solid #a6a6a6;border-top-width : 0;border-bottom-width : 0;}
+    .eb_menu3 {background-image : url(Images/menustuff.gif);font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;color : #ffffff;border : 1px solid #a6a6a6;border-top-width : 0;border-left : 0;}
+    .forum_footer {border : 1px solid #a6a6a6;border-top-width : 0;background-color : #1d1d1d;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px; color: #FFFFFF;}
+    .forum_footer2 {border : 1px solid #a6a6a6;border-left : 0;border-top-width : 0;background-color : #1d1d1d;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_wysiwyg {border : 1px solid #a6a6a6;background-color : #ffffff;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;color : #000000;}
+    .eb_showforum_left {border : 1px solid #a6a6a6;background-color : #494949;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;border-right : 0;color : #ffffff;}
+    .eb_showforum_right {border : 1px solid #a6a6a6;background-color : #494949;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;color : #ffffff;}
+    .eb_showforum_lower_left {border : 1px solid #a6a6a6;border-right : 0;border-top-width : 0;background-color : #1d1d1d;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_showforum_lower_right {border : 1px solid #a6a6a6;border-top-width : 0;background-color : #1d1d1d;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_showtopic_extra {border : 1px solid #a6a6a6;border-top-width : 0;background-color : #000;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 5px;color : #333333;}
+    .eb_topic_lower {border : 1px solid #a6a6a6;background-color : #00144e;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;color : #ffffff;}
+    .eb_topic_profile {border : 1px solid #a6a6a6;background-color : #444444;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;border-right : 0;color : #ffffff;}
+    .eb_loggedin {border : 1px solid #006600;background-color : #009900;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_showpost_footer {border : 1px solid #a6a6a6;background-color : #525252;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;color : #ffffff;}
+    .eb_showpost_footer_l {border : 1px solid #a6a6a6;background-color : #525252;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;border-right : 0;color : #ffffff;}
+    .eb_forbit {border : 1px solid #990000;background-color : #ff0000;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .sdmenu {width : 175px;font-family : Sans-Serif;font-size : 12px;padding-bottom : 1px;background : #a6a6a6 no-repeat right bottom;color : #fff; }
+    .sdmenu .title, .sdmenu .titlehidden {display : block;padding : 5px 0;font-weight : bold;border-bottom : 0;background-color : #082749;border : 1px solid #a6a6a6;font-family : Verdana, Arial, Helvetica, sans-serif;color : #ffffff; background: #FFF url(Images/menustuff.gif) repeat-x; border-left-width: 1; border-top-width: 0;}
+    .sdmenu .title {border-bottom : 1px solid #a6a6a6;}
+    .sdmenu .arrow { margin-left : 10px;margin-right : 7px; }
+    .sdmenu .titlehidden { border-bottom : none; }
+    .sdmenu .submenu {	overflow : hidden;     }
+    .sdmenu .submenu a {	padding : 5px 0;text-indent : 10px;background : #eee;display : block;border-bottom : 1px solid #ddd;text-decoration : none;border : 1px solid #a6a6a6;background-color : #525252;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;border-bottom-width : 0;color : #ffffff;	}
+  .sdmenu .submenu a:hover {background : #0099CC ;color : #fff; }
+      .eb_delete {  border: 0px solid #FFF;  background-image: url(Images/del.gif); width: 38px; height: 14px;  }
+	      .eb_profile_ {width : 200px;font-family : Sans-Serif;font-size : 12px;padding-bottom : 1px;background : #a6a6a6 no-repeat right bottom;color : #fff;}
+.eb_profile__ { padding : 5px 0;text-indent : 10px;background : #eee;display : block;border-bottom : 1px solid #ddd;text-decoration : none;border : 1px solid #a6a6a6;background-color : #525252;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;border-top-width : 0;border-bottom-width : 0;color : #ffffff;	 }    .eb_txt {font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px;}
+    .eb_forum  {background-image : url(Images/menu.gif);font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 12px; border : 1px solid #a6a6a6; height: 30px; color: #FFF;}
+    .eb_forum_header {border : 1px solid #a6a6a6;background-color : #082749;font-family : Verdana, Arial, Helvetica, sans-serif;font-size : 10px; color : #ffffff; background-image: url(Images/eb_forum.gif); }
