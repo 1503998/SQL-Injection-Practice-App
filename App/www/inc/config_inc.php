@@ -1,0 +1,1 @@
+<?php $cfg_mysql_host = 'localhost'; $cfg_mysql_db = 'family'; $cfg_mysql_user = 'root'; $cfg_mysql_pass = 'hacklab2019'; $cfg_sitename = 'localhost'; $cfg_contact_email = 'email@email.com'; $cfg_use_news = 'NO'; $cfg_use_prayers = 'NO';  ?>

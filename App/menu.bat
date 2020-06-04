@@ -1,7 +1,7 @@
 @ECHO OFF
 Rem SQL Injections PHP/MySQL applications. 
 Rem Tristan Price / 1503998
-Rem Started:12/11/19  Finished:
+Rem Started:12/11/19  Finished:4/6/2020
 
 CLS
 
@@ -45,7 +45,7 @@ ECHO m - Family Connections 1.4
 ECHO n - EXIT
 ECHO.
 
-CHOICE /C abcdefghijklmnx /N /M "Choose the PHP app that you want to install under UniServerZ or press x to EXIT."
+CHOICE /C abcdefghijklmnopx /N /M "Choose the PHP app that you want to install under UniServerZ or press x to EXIT."
 IF ERRORLEVEL 1 SET M=Lepton & SET d=null
 IF ERRORLEVEL 2 SET M=movieguide & SET d=null
 IF ERRORLEVEL 3 SET M=qdblog & SET d=null

@@ -1,483 +1,327 @@
+<!--
+Family Connections - a family oriented CMS -- http://www.haudenschilt.com/fcms/
+
+Copyright (C) 2007 Ryan Haudenschilt
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+-->
 <?php
-
-/*****************************************************************************/
-/* install.php                                                               */
-/*****************************************************************************/
-/* Gravity Board X                                                           */
-/* Open-Source Project started by Jonathan Taft (admin@gravityboardx.com)    */
-/* Software Version: GBX Version 2.0                                         */
-/* ========================================================================= */
-/* Copyright (c) 2002-2007 Gravity Board X Developers. All Rights Reserved   */
-/* Software by: The Gravity Board X Development Team                         */
-/*****************************************************************************/
-/* This program is free software; you can redistribute it and/or modify it   */
-/* under the terms of the GNU General Public License as published by the     */
-/* Free Software Foundation; either version 2 of the License, or (at your    */
-/* option) any later version.                                                */
-/*                                                                           */
-/* This program is distributed in the hope that it will be useful, but       */
-/* WITHOUT ANY WARRANTY; without even the implied warranty of                */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General */
-/* Public License for more details.                                          */
-/*                                                                           */
-/* The GNU GPL can be found in gpl.txt, which came with your download of GBX */
-/*****************************************************************************/
-
-///////////////////////////////////////////////////////////////////////////////
-//----------------------------SCRIPT INFORMATION-----------------------------//
-//This script installs the MySQL database structure which the board relies   //
-//on.  All data and information related to the board is contained within     //
-//these mySQL database tables.                                               //
-///////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////
-//ACTIVATE AFTER FORM IS SUBMITTED//
-////////////////////////////////////
-
-if(isset($_POST['install_submit']))
-{
-
-//IF THE TWO PASSWORDS SUPPLIED BY THE USERS MATCH, CONTINUE WITH THE INSTALLATION
-if ($_POST['password'] == $_POST['passwordconfirm']) {
-
-$prefix = $_POST['prefix'];
-
-//CONNECT TO MySQL DATABASE
-mysql_connect(stripslashes($_POST['hostname']),stripslashes($_POST['username']),stripslashes($_POST['password'])) OR DIE("Gravity Board X experienced an error while trying to connect to your MySQL database: " . mysql_error());
-
-//SELECT THE MySQL DATABASE
-mysql_select_db(stripslashes($_POST['dbname'])) OR DIE ("Gravity Board X was unable to select the proper database: " . mysql_error());
-
-//CREATE THE MySQL TABLES NEEDED TO RUN THE MESSAGE BOARD
-//STORES THE BOARD ANNOUNCEMENTS
-mysql_query("CREATE TABLE " . $prefix . "announcements (board_id TINYINT, text TEXT, enabled TINYINT, PRIMARY KEY(board_id))") OR DIE("Gravity Board X experienced an error while trying to create the announcements table: " . mysql_error());
-
-//STORES A LIST OF BANNED USERS
-mysql_query("CREATE TABLE " . $prefix . "banned (ip TINYTEXT, email TINYTEXT, bandate VARCHAR(255), banuntil VARCHAR(255), banreason TEXT, id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT, PRIMARY KEY(id))") OR DIE("Gravity Board X experienced an error while trying to create the banned table: " . mysql_error());
-
-//STORES A LIST OF BOARDS
-mysql_query("CREATE TABLE " . $prefix . "boards (name VARCHAR(255), board_id INT UNSIGNED NOT NULL AUTO_INCREMENT, cat_id TINYINT DEFAULT '1', boardorder INT, description TINYTEXT, PRIMARY KEY(board_id))") OR DIE("Gravity Board X experienced an error while trying to create the boards table: " . mysql_error());
-
-//STORES A LIST OF CATEGORIES FOR BOARDS TO GO IN
-mysql_query("CREATE TABLE " . $prefix . "categories (catname TINYTEXT, cat_id INT UNSIGNED NOT NULL AUTO_INCREMENT, catorder INT, PRIMARY KEY(cat_id))") OR DIE ("Gravity Board X experienced an error while trying to create the categories table: " . mysql_error());
-
-//STORES A LIST OF WORDS TO BE CENSORED ON THE BOARD
-mysql_query("CREATE TABLE " . $prefix . "censor (wordlist TEXT, enabled TINYINT, id TINYINT)") OR DIE ("Gravity Board X experienced an error while trying to create the censor table: " . mysql_error());
-
-//STORES ALL INSTANT MESSAGES SENT FROM MEMBER TO MEMBER
-mysql_query("CREATE TABLE " . $prefix . "ims (imbody TEXT, imsubject TEXT, imdate VARCHAR(255), reply TINYINT DEFAULT '0', imread TINYINT DEFAULT '0', replytime VARCHAR(255), imfrom TINYINT, imto TINYINT, imid INT UNSIGNED NOT NULL AUTO_INCREMENT, im_parent INT, PRIMARY KEY(imid), FULLTEXT(imbody), FULLTEXT(imsubject), FULLTEXT(imbody, imsubject))") OR DIE ("Gravity Board X experienced an error while trying to create the IMs table: " . mysql_error());
-
-//STORES A LIST OF MEMBERGROUPS
-mysql_query("CREATE TABLE " . $prefix . "membergroups (group_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT, group_name TINYTEXT, group_type TINYTEXT, PRIMARY KEY(group_id))") OR DIE ("Gravity Board X experienced an error while trying to create the member groups table: " . mysql_error());
-
-//STORES ALL VITAL DATA FOR ALL MEMBERS
-mysql_query("CREATE TABLE " . $prefix . "members (memberid INT UNSIGNED NOT NULL AUTO_INCREMENT, displayname TINYTEXT, realname TINYTEXT, pw TINYTEXT, email TINYTEXT, signature TINYTEXT, user_text TINYTEXT, aim_id TINYTEXT, yahoo_id TINYTEXT, msn_id TINYTEXT, icq_id TINYTEXT, homepage_link TINYTEXT, memberGroup INT, group_rank TINYTEXT, location TINYTEXT, dateregistered VARCHAR(255), timediff TINYTEXT, icon_url TEXT, icon_width TINYTEXT, icon_height TINYTEXT, usecookie BOOL, otherinfo TEXT, pmssent INT, boardviews INT, threadviews INT, messageviews INT, pmsread INT, totalclicks INT, bookmarks TEXT, messageeditor BOOL, tperpage TINYINT, mperpage TINYINT, verified TINYINT, verifyid TINYTEXT, PRIMARY KEY(memberid), FULLTEXT(displayname))") OR DIE("Gravity Board X experienced an error while trying to create the users table: " . mysql_error());
-
-//STORES ALL STATISTICAL DATA FOR ALL MEMBERS
-mysql_query("CREATE TABLE " . $prefix . "memberstats (memberid INT, logins INT, pmssent INT, boardsviewed INT, threadsviewed INT, postsviewed INT, clicks INT)") OR DIE("Gravity Board X experienced an error while trying to create the users table: " . mysql_error());
-
-//Message logs are not fully implemented for this release (see readme.txt release notes)
-mysql_query("CREATE TABLE " . $prefix . "message_logs (memberid INT UNSIGNED NOT NULL AUTO_INCREMENT, messagesread TEXT, PRIMARY KEY(memberid))") OR DIE ("Gravity Board X experienced an error while trying to create the message logs table: " . mysql_error());
-
-//CONTAINS A LIST OF MEMBERS CURRENTLY ONLINE
-mysql_query("CREATE TABLE " . $prefix . "online (session_id VARCHAR(255) NOT NULL DEFAULT '', firstonline VARCHAR(255), lastactive VARCHAR(255), member TINYINT DEFAULT '0', memberid INT, ip_address VARCHAR(255) NOT NULL DEFAULT '', refurl VARCHAR(255) NOT NULL DEFAULT '', useragent VARCHAR(255) DEFAULT NULL, PRIMARY KEY (session_id), KEY session_id (session_id))") OR DIE("Gravity Board X experienced an error while trying to create the online table: " . mysql_error());
-
-//STORES ALL POSTS MADE ON THE BOARD - THE MOST IMPORTANT DATABASE BY FAR
-mysql_query("CREATE TABLE " . $prefix . "posts (board_id TINYINT, dateposted VARCHAR(255), thread_id TINYINT, msg_id INT(15) UNSIGNED NOT NULL AUTO_INCREMENT, subject TEXT, message TEXT, poster_email TINYTEXT, memberid INT, ip TINYTEXT, PRIMARY KEY(msg_id), FULLTEXT(subject), FULLTEXT(message), FULLTEXT(subject, message))") OR DIE("Gravity Board X experienced an error while trying to create the posts table: " . mysql_error());
-
-//STORES ALL POSTS MADE ON THE BOARD - THE MOST IMPORTANT DATABASE BY FAR
-mysql_query("CREATE TABLE " . $prefix . "pwreset (resetemail TINYTEXT, resetid TINYTEXT)") OR DIE("Gravity Board X experienced an error while trying to create the posts table: " . mysql_error());
-
-//STORES ALL RANK NAMES, VALUES, ETC.
-mysql_query("CREATE TABLE " . $prefix . "ranks (rank TINYTEXT, postsneeded INT, color TINYTEXT, rankid INT UNSIGNED NOT NULL AUTO_INCREMENT, PRIMARY KEY(rankid))") OR DIE("Gravity Board X experienced an error while trying to create the ranks table: " . mysql_error());
-
-//STORES ALL THE SETTINGS FOR THE BOARD
-mysql_query("CREATE TABLE " . $prefix . "settings (regemail TEXT, admincolor TINYTEXT, modcolor TINYTEXT, maxiconwidth TINYTEXT, maxiconheight TINYTEXT, timediff TINYINT, useragreement TEXT, debugon BOOL, currentskin TINYTEXT, tperpage TINYINT, mperpage TINYINT)") OR DIE("Gravity Board X experienced an error while trying to create the settings table: " . mysql_error());
-
-//STORES ALL OF THE BOARD STATISTICS
-mysql_query("CREATE TABLE " . $prefix . "stats (pmssent INT UNSIGNED NOT NULL, totalclicks INT UNSIGNED NOT NULL, boardviews INT UNSIGNED NOT NULL, threadviews INT UNSIGNED NOT NULL, messageviews INT UNSIGNED NOT NULL, pmsread INT UNSIGNED NOT NULL)") OR DIE("Gravity Board X experienced an error while trying to create the threads table: " . mysql_error());
-
-//STORES ALL OF THE THREADS
-mysql_query("CREATE TABLE " . $prefix . "threads (thread_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, subject VARCHAR(255), first_msg INT, last_msg INT, board_id TINYINT, view_num TINYINT DEFAULT '0', reply_num INT DEFAULT '0', sticky TINYINT DEFAULT '0', locked TINYINT DEFAULT '0', last_msg_time VARCHAR(255), PRIMARY KEY(thread_id))") OR DIE("Gravity Board X experienced an error while trying to create the threads table: " . mysql_error());
-
-//TRACKS USER LOGIN ACTIONS, FOR SECURITY REASONS
-mysql_query("CREATE TABLE " . $prefix . "tracking (memberid INT, logintime INT, logouttime INT, loginip TINYTEXT, logoutip TINYTEXT)") OR DIE("Gravity Board X experienced an error while trying to create the threads table: " . mysql_error());
-
-//Create the first Administrator account
-$savetime = time();
-$apw = MD5("admin");
-mysql_query("INSERT INTO " . $prefix . "members (displayname, pw, email, membergroup, dateregistered, timediff, pmssent, boardviews, threadviews, messageviews, pmsread, totalclicks, messageeditor, tperpage, mperpage, verified) VALUES ('Administrator','$apw','admin','1','$savetime','{$_POST['timediff']}','0','0','0','0','0','0','1','50','15','1')") OR DIE("Gravity Board X experienced an error while trying to create the first Administrator account: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "message_logs (memberid, messagesread) VALUES ('1', '0')") OR DIE("Gravity Board X was unable to create the administrator message log account: " . mysql_error());
-
-//Create default membergroups
-mysql_query("INSERT INTO " . $prefix . "membergroups (group_name, group_type) VALUES ('Administrator', '1')") OR DIE("Gravity Board X experienced an error while trying to create the admin member group: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "membergroups (group_name, group_type) VALUES ('Moderator', '2')") OR DIE("Gravity Board X experienced an error while trying to create the moderator member group: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "membergroups (group_name, group_type) VALUES ('Member', '0')") OR DIE("Gravity Board X experienced an error while trying to create the default member group: " . mysql_error());
-
-//Create default announcement
-mysql_query("INSERT INTO " . $prefix . "announcements (board_id, text, enabled) VALUES ('0','Welcome to Gravity Board X.','0')") OR DIE("Gravity Board X experienced an error while trying to create the default announcement: " . mysql_error());
-
-//Create default censored words
-mysql_query("INSERT INTO " . $prefix . "censor (wordlist, enabled, id) VALUES ('fuck,shit,bitch,cock,penis,vagina,fag','1','1')") OR DIE("Gravity Board X experienced an error while trying to set the default censored words: " . mysql_error());
-//Create default stats table entry
-
-mysql_query("INSERT INTO " . $prefix . "stats (pmssent, totalclicks, boardviews, threadviews, messageviews, pmsread) VALUES ('0','0','0','0','0','0')") OR DIE("Gravity Board X experienced an error while trying to set the default censored words: " . mysql_error());
-
-//Set default settings
-$regemail = "Congratulations, you have successfully registered for a Gravity Board X forum! Before you may login with your email and password you must first click the link below to confirm your registration.  The information you supplied during registration is also listed below.  We hope you enjoy using Gravity Board X!";
-$useragreement = "By registering for use of this forum, you hereby agree to all terms described within this document.<br/><br/>
-                  While the moderators of these forums attempt to remove any material in violation of these rules as soon as possible, we are not held responsible for the content on this board:<br/><br/>
-                  You hereby agree to take responsibility for all of your actions within this board; your Internet Protocol address is recorded with each post, along with the time in an effort to enforce
-                  these rules while moderators are not present.  If problems arise, your Internet Service Provider may be contacted without your permission, and a formal complaint may be filed.  We will not
-                  be held responsible for any actions that your Internet Service Provider takes upon you, including but not limited to termination of your Internet Service contract.  We will enforce these
-                  rules very strictly, and steps will be taken to show that we do, including but not limited to; locking and deletion of posts and/or material in violation of this agreement, timed and/or
-                  permanent banning of users, and contacting a user\'s Internet Service Provider.<br/><br/>Although we will enforce these rules as strictly as possible, we reserve the right to take actions
-                  within this board without the violation of this agreement.  This includes but not limited to; locking and/or deletion of posts, and timed and/or permanent banning.<br/><br/>By clicking
-                  I Agree below, you hereby signify that you have read and understand all of the terms above, and agree to them, welcoming any discipline action that may be taken upon you while in violation of any of these rules.";
-mysql_query("INSERT INTO " . $prefix . "settings (regemail, admincolor, modcolor, maxiconwidth, maxiconheight, timediff, useragreement, debugon, currentskin, tperpage, mperpage) VALUES ('$regemail','#FE8000','#BDFB04','70','70','{$_POST['timediff']}','$useragreement','0','two','30','15')") OR DIE("Gravity Board X was unable to set the default settings: " . mysql_error());
-
-########################
-##Create default ranks##
-########################
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('n00b','0','#555555')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Amateur n00b','25','#AAAAAA')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Professional n00b','50','#FFFFFF')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Minty Fresh','75','#C4FF60')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Triple Digits','100','#0000C8')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Midget','166','#FFFF7D')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 401 - Unauthorized','401','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 403 - Forbidden','403','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 404 - Page cannot be found','404','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 500 - Internal Error','500','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 501 - Not Implemented','501','#FF00FF')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Error 503 - Service Unavailable','502','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Bulls Eye','504','#C80000')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Emergency!','911','#FF0000')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Burning Up!','912','#AA0000')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Quadruple Digits','1000','#960000')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('1337','1337','#00FF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Circus Ringmaster','1338','#006400')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Diamond In The Rough','1999','#00FFFF')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Drunk Driver','3333','#FF9664')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Con Artist','5000','#404040')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Gangsta','6101','#C8AF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Pirate','7500','#BE0000')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Rookie Of The Year','8206','#C8C800')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Genius','10000','#960096')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Moderator Candidate','15000','#00C800')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Bow To Your Royal Highness!','30000','#FFC800')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-mysql_query("INSERT INTO " . $prefix . "ranks (rank, postsneeded, color) VALUES ('Make Me An Administrator!','50000','#FFFF00')") OR DIE("Gravity board X was unable to create rank id1: " . mysql_error());
-#####################
-##End default ranks##
-#####################
-
-//Close MySQL connection
-mysql_close();
-
-//Create the board SQL configuration file
-$filepointer = fopen("config.php", "w");
-fputs($filepointer, "<?\r\n\$hostname=\"" . $_POST['hostname'] . "\";\r\n");
-fputs($filepointer, "\$prefix=\"" . $_POST['prefix'] . "\";\r\n");
-fputs($filepointer, "\$username=\"" . $_POST['username'] . "\";\r\n");
-fputs($filepointer, "\$password=\"" . $_POST['password'] . "\";\r\n");
-fputs($filepointer, "\$dbname=\"" . $_POST['dbname'] . "\";\r\n");
-fputs($filepointer, "\$boardname=\"" . $_POST['boardname'] . "\";\r\n");
-fputs($filepointer, "function dbconnect(){\r\nglobal \$hostname;\r\nglobal \$username;\r\nglobal \$password;\r\nglobal \$dbname;\r\n\$connection = MYSQL_CONNECT(\$hostname,\$username,\$password) OR DIE(\"Gravity Board X was unable to connect to the specified database. Please go back and double-check the database you supplied: \" . mysql_error());\r\n @mysql_select_db(\"\$dbname\") OR DIE(\"Gravity Board X was able to connect to your SQL host, but had difficulties selecting the specified database.  Please go back and double-check the database you supplied.\");\r\n return \$connection;\r\n}\r\n?>");
-fclose($filepointer);
-
-//TEST INSTALLATION STATUS
-//CONNECT TO DATABASE
-mysql_connect($_POST['hostname'], $_POST['username'], $_POST['password']) OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Cannot connect to mysql host: </b><br/>" . mysql_error());
-mysql_select_db($_POST['dbname']) OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Cannot connect to mysql database: </b><br/>" . mysql_error());
-
-$q1 = mysql_query("SELECT * FROM " . $prefix . "announcements") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Announcements table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Announcements table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "banned") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Banned table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Banned table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "boards") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Boards table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Boards table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "categories") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Categories table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Categories table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "censor") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Censor table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Censor table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "ims") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>IMs table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">IMs table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "membergroups") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Membergroups table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">MemberGroups table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "members") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Members table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Members table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "memberstats") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Member stats table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Memberstats table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "message_logs") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Message log table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Message_logs table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "online") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Online table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Online table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "posts") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Posts table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Posts table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "pwreset") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>PW Reset table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">PWReset table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "ranks") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Ranks table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Ranks table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "settings") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Settings table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Settings table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "stats") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Stats table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Stats table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "threads") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Threads table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Threads table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-$q1 = mysql_query("SELECT * FROM " . $prefix . "tracking") OR DIE("<b><font color=\"#FF0000\">ERROR: </font>Tracking table not found.</b><br/>");
-if($q1){ echo '<b><span style="color: #2EB800">Tracking table created successfully.</span></b><br/>'; }else{ $install_error = 1; }
-
-if($install_error)
-{
-	echo '<b><span style="color: #FF0000;">One or more errors occurred when installing Gravity Board X.  Please see above for more information.</span></b>';
-}else
-{
-	echo '<b>Congratulations, your Gravity Board X software has been successfully installed!  You may now login with the email "admin" and the password "admin".  It is highly reccommended that you change the password to this account.  To get started, enter your admin control panel and create a board.  Please also do not forget to delete install.php in your board directory.  We hope you enjoy using Gravity Board X!</b>';
-}
-
-} else {
-
-//THE TWO PASSWORDS SUPPLIED DID NOT MATCH
-echo "<b>Your passwords supplied did not match. Please go back and re-enter your data.</b>";
-
-}
-
-
-//////////////////////
-//END SUBMITTED FORM//
-//////////////////////
-
-}else
-{
-
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-
+include_once('inc/language.php');
+if (get_magic_quotes_gpc()) {
+	$_REQUEST = array_map('stripslashes', $_REQUEST);
+	$_GET = array_map('stripslashes', $_GET);
+	$_POST = array_map('stripslashes', $_POST);
+	$_COOKIE = array_map('stripslashes', $_COOKIE);
+} ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $LANG['lang']; ?>" lang="<?php echo $LANG['lang']; ?>">
 <head>
-    <title>Gravity Board X Installation</title>
-
-    <link rel="stylesheet" type="text/css" href="skins/slate/skin.css"/>
-    <link rel="GBX Icon" href="favicon.ico">
-
-    <script type="text/javascript" src="validate/yav.js"></script>
-    <script type="text/javascript" src="validate/yav-config.js"></script>
-</head>
-
-<body bgcolor=#303030>
-
-<script type="text/javascript" language="JavaScript">
-var rules=new Array();
-rules[0]='boardname|required|Please enter a Forum Name.';
-rules[1]='hostname|required|Please enter a MySQL Hostname.';
-rules[2]='username|required|Please enter a MySQL Username.';
-rules[3]='password|required|Please enter a MySQL Password.';
-rules[4]='passwordconfirm|required|Please confirm your MySQL Password.';
-rules[5]='prefix|required|Please enter a Database Prefix.';
-rules[6]='dbname|required|Please enter a Database Name.';
-rules[7]='password|equal|$passwordconfirm|MySQL Passwords must match.';
+<title>Installation -> Family Connections</title>
+<link rel="stylesheet" type="text/css" href="themes/datechooser.css" />
+<script src="inc/prototype.js" type="text/javascript"></script>
+<script type="text/javascript" src="inc/datechooser.js"></script>
+<script type="text/javascript">
+<!-- //
+	window.onload = WindowLoad;
+	function WindowLoad()
+	{
+		var objDatePicker = new DateChooser();
+		objDatePicker.setUpdateField({'day':'j', 'month':'n', 'year':'Y'});
+		objDatePicker.setIcon('themes/images/default/datepicker.jpg', 'year');
+		return true;
+	}
+// -->
 </script>
-
-<form method="POST" name="installform" action="<?php echo $PHP_SELF; ?>" onSubmit="return performCheck('installform', rules, 'innerHtml');">
-<table class="station" width="100%" cellspacing="0">
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" bgcolor="#C0C0C0" colspan="5">
-    <p align="center"><b><font face="Verdana" color="#003366">Gravity Board X
-    Installation</font></b></td>
-  </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5" align="center">&nbsp;</td>
-    </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5" align="center">
-    <b><font face="Verdana" size="2" color="#FFFFFF">Installing Gravity Board X
-    on your site is easy.&nbsp; Simply fill out the form below with the
-    information requested, click Install, and in a matter of <i>seconds</i>, you'll
-    have GBX up and running on your site, ready for use!</font></b></td>
-    </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5" align="center">&nbsp;</td>
-    </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5" align="center">
-    <b><font size="2" face="Verdana" color="#FF0000">All fields are required to
-    successfully install your forum.</font></b></td>
-    </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5" align="center">&nbsp;</td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" color="#FFFFFF" size="2">Forum Name</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="text" class="textbox" name="boardname" size="20" value="Gravity Board X"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <p align="left"><font face="Verdana" size="2" color="#FFFFFF">The name of
-    your forum (default Gravity Board X)</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" size="2" color="#FFFFFF">MySQL Hostname</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="text" class="textbox" name="hostname" size="20" value="localhost"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Your MySQL hostname (usually
-    localhost)</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" color="#FFFFFF" size="2">MySQL Username</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" >&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="text" class="textbox" name="username" size="20"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Your MySQL username</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" color="#FFFFFF" size="2">MySQL Password</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="password" class="textbox" name="password" size="20"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Your MySQL password</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" size="2" color="#FFFFFF">Confirm MySQL Password</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="password" class="textbox" name="passwordconfirm" size="20"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Re-Enter your MySQL password</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" color="#FFFFFF" size="2">MySQL Database Name</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="text" class="textbox" name="dbname" size="20"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Your MySQL database name</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" size="2" color="#FFFFFF">Database Prefix</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <input type="text" class="textbox" name="prefix" size="20" value="gbx_"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">The MySQL database prefix
-    (default is gbx)</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="right">
-    <font face="Verdana" size="2" color="#FFFFFF">Default Time Zone</font></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-
-    <select name="timediff" class="textbox">
-      <option value="-12">(GMT -12:00)</option>
-      <option value="-11">(GMT -11:00)</option>
-      <option value="-10">(GMT -10:00)</option>
-      <option value="-9">(GMT -9:00)</option>
-      <option value="-8">(GMT -8:00)</option>
-      <option value="-7">(GMT -7:00)</option>
-      <option value="-6">(GMT -6:00)</option>
-      <option value="-5">(GMT -5:00)</option>
-      <option value="-4">(GMT -4:00)</option>
-      <option value="-3">(GMT -3:00)</option>
-      <option value="-2">(GMT -2:00)</option>
-      <option value="-1">(GMT -1:00)</option>
-      <option value="0" selected>(GMT)</option>
-      <option value="1">(GMT +1:00)</option>
-      <option value="2">(GMT +2:00)</option>
-      <option value="3">(GMT +3:00)</option>
-      <option value="4">(GMT +4:00)</option>
-      <option value="5">(GMT +5:00)</option>
-      <option value="6">(GMT +6:00)</option>
-      <option value="7">(GMT +7:00)</option>
-      <option value="8">(GMT +8:00)</option>
-      <option value="9">(GMT +9:00)</option>
-      <option value="10">(GMT +10:00)</option>
-      <option value="11">(GMT +11:00)</option>
-      <option value="12">(GMT +12:00)</option>
-      <option value="13">(GMT +13:00)</option>
-    </select>
-
-</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    <font face="Verdana" size="2" color="#FFFFFF">Default Time Zone for this board</font></td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">&nbsp;</td>
-    </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">&nbsp;</td>
-    </tr>
-  <tr>
-    <td width="100%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" colspan="5">
-    <p align="center"><font color="#FF0000"><b>Before proceeding, make sure your install directory (where this install.php file is residing) has its permissions set to 777!  If this is not the case, installation will produce many errors and not be able to create the config file.</b></p>
-    <p align="center"><font face="Verdana" size="2" color="#FFFFFF">Please
-    double-check the variables you entered above.&nbsp; <b>By clicking I AGREE -
-    Install below, you hereby agree to having read readme.html
-    included with this GBX download, and are bound to the terms of the GNU
-    General Public License Version 2 or (at your option) any later version FOR NON-COMMERCIAL USE.</b></font></td>
-    </tr>
-  <tr>
-    <td>
-<div id="errorsDiv" style="color: #FF0000;"></div>
-    </td>
-  </tr>
-  <tr>
-    <td width="45%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">&nbsp;</td>
-    <td width="15%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    <p align="center">
-    <input type="submit" class="button" value="I AGREE - Install" name="install_submit">
-    <input type="reset" class="button" value="Clear" name="B2"></td>
-    <td width="1%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium">
-    &nbsp;</td>
-    <td width="38%" style="border-left: medium none #111111; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium; border-bottom-style: none; border-bottom-width: medium" align="left">
-    &nbsp;</td>
-    </tr>
-  </table>
-</form>
-</body>
-
-</html>
-
+<style type="text/css">
+html { font-size: 100%; background: #9ccef0 url(themes/images/default/bg.png) repeat-x; }
+body { font-size: 12pt; line-height: 24pt; text-align: center; font-family: Verdana, Sans-Serif; }
+a { color: #02876c; font-weight: bold; text-decoration: none; }
+a:hover { color: #000; background-color: #9ccef0; }
+p { font-size: 10pt; line-height: 14pt; }
+#column { width: 600px; margin: 0 auto 50px auto; padding: 10px; text-align: left; background-color: #fff }
+h1 { color: #fff; margin-top: 150px; }
+h2 { color: #fff; font-weight: bold; background-color: #000; margin: 0; padding: 15px 0 11px 15px; }
+#sections-photo, #sections-board, #sections-book, #sections-calendar, #sections-news, #sections-prayers { border: none; }
+.field-label { margin: 10px 0 0 0 0; }
+.field-widget { margin: 10px 0 0 0; }
+.error { font-size: 10pt; line-height: 14pt; color: #f30; }
+.info { padding: 10px; background-color: #eee; }
+.req { font-size: 8pt; color: #c00; }
+.LV_valid { font-size: 9pt; padding-left: 10px; font-weight: bold; color: #0c0; }
+.LV_valid_field, input.LV_valid_field:hover, input.LV_valid_field:active, textarea.LV_valid_field:hover, textarea.LV_valid_field:active { border: 1px solid #0c0; }
+.LV_invalid { display: block; font-size: 8pt; font-weight: bold; color : #c00; }
+.LV_invalid_field, input.LV_invalid_field:hover, input.LV_invalid_field:active, textarea.LV_invalid_field:hover, textarea.LV_invalid_field:active { border: 1px solid #c00; }
+#submit { font-size: 14pt; line-height: 24pt; font-family: Verdana, Sans-Serif; border: none; }
+#install { margin: 50px 0 0 0; width: 60%; }
+#install p { font-size: 14pt; line-height: 24pt; }
+#install div { float: left; width:48%; padding:10px; font-size: 8pt; }
+#install .nbtn { color: #000; padding:10px 25px; background-color: #fff; border: 1px solid #000; }
+#install .ybtn { color: #000; padding:10px 20px; background-color: #9ccef0; border: 1px solid #000; }
+</style>
+</head>
+<body>
 <?php
-
+if (!isset($_POST['submit']) && file_exists('inc/config_inc.php')) {
+	echo "<div id=\"install\"><h1>".$LANG['already_install1']."</h1><p>".$LANG['already_install2']."</p><div>";
+	echo "<a class=\"nbtn\" href=\"index.php\">".$LANG['already_install3']."</a><br/>".$LANG['already_install4']."</div><div>";
+	echo "<a class=\"ybtn\" href=\"#\" onclick=\"$('show-install').toggle(); $('install').toggle(); document.setupform.dbhost.focus(); return false\">".$LANG['already_install5']."</a><br/>".$LANG['already_install6']."</div></div>";
+	echo "<div id=\"show-install\" style=\"display:none;\">";
 }
-
-?>
+if (isset($_POST['submit'])) {
+	if (!isset($_POST['dbhost']) || !isset($_POST['dbname']) || !isset($_POST['dbuser']) || !isset($_POST['dbpass']) || !isset($_POST['sitename']) || !isset($_POST['contact']) || !isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['fname']) || !isset($_POST['lname']) || !isset($_POST['email'])) {
+		displayForm("<p class=\"error\">".$LANG['err_required']."</p>");
+	} else {
+		$birthday = $_POST['year'] . "-" . str_pad($_POST['month'], 2, "0", STR_PAD_LEFT) . "-" . str_pad($_POST['day'], 2, "0", STR_PAD_LEFT);
+		$file = fopen('inc/config_inc.php', 'w') or die("Make sure that the inc folder is CHMOD 777.");
+		$str = "<?php \$cfg_mysql_host = '".$_POST['dbhost']."'; \$cfg_mysql_db = '".$_POST['dbname']."'; \$cfg_mysql_user = '".$_POST['dbuser']."'; \$cfg_mysql_pass = '".$_POST['dbpass']."'; \$cfg_sitename = '".htmlentities($_POST['sitename'], ENT_QUOTES)."'; \$cfg_contact_email = '".$_POST['contact']."'; ";
+		if($_POST['sections-news']) { $str .= "\$cfg_use_news = 'YES'; "; } else { $str .= "\$cfg_use_news = 'NO'; "; }
+		if($_POST['sections-prayers']) { $str .= "\$cfg_use_prayers = 'YES'; "; } else { $str .= "\$cfg_use_prayers = 'NO'; "; }
+		$str .= " ?>";
+		fwrite($file, $str);
+		fclose($file);
+		setupDatabase($_POST['fname'], $_POST['lname'], $_POST['email'], $birthday, $_POST['username'], $_POST['password'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['home'], $_POST['work'], $_POST['cell']);
+	}
+} else { 
+	displayForm();
+}
+echo "</div>"; ?>
+</body>
+</html>
+<?php
+function displayForm ($error = '0') {
+	global $LANG; ?>
+	<h1><?php echo $LANG['install']; ?> Family Connections</h1>
+	<script type="text/javascript" src="inc/prototype.js"></script>
+	<script type="text/javascript" src="inc/livevalidation.js"></script>
+	<form id="setupform" name="setupform" action="install.php" method="post">
+	<div id="column">
+		<?php if ($error !== '0') { echo $error; } ?>
+		<h2><?php echo $LANG['db_info']; ?></h2>
+		<p class="info"><?php echo $LANG['readme']; ?></p>
+		<div><div class="field-label"><label for="dbhost"><b><?php echo $LANG['db_host']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="dbhost" size="50" id="dbhost" class="required" value="" title="<?php echo $LANG['title_db_host']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fdbhost = new LiveValidation('dbhost', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			fdbhost.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>"});
+		</script> 	
+		<p><?php echo $LANG['db_host_desc1']." <i>".$LANG['db_host_desc2']."</i> ".$LANG['db_host_desc3']?></p>
+		<div><div class="field-label"><label for="dbname"><b><?php echo $LANG['db_name']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="dbname" size="50" id="dbname" class="required" value="" title="<?php echo $LANG['title_db_name']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fdbname = new LiveValidation('dbname', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			fdbname.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>"});
+		</script> 	
+		<p><?php echo $LANG['db_name_desc']; ?> Family Connections.</p>
+		<div><div class="field-label"><label for="dbuser"><b><?php echo $LANG['db_uname']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="dbuser" size="50" id="dbuser" class="required" value="" title="<?php echo $LANG['title_db_uname']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fdbuser = new LiveValidation('dbuser', { validMessage: "<?php echo $LANG['lv_good_dbuser']; ?>", wait: 500});
+			fdbuser.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_bad_dbuser']; ?>"});
+		</script> 	
+		<p><?php echo $LANG['db_uname_desc']; ?></p>
+		<div><div class="field-label"><label for="dbpass"><b><?php echo $LANG['db_pass']; ?></b></label>: (<span class="req">*</span>)</div>	<div class="field-widget"><input type="password" name="dbpass" size="50" id="dbpass" class="required" value="" title="<?php echo $LANG['title_db_pass']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fdbpass = new LiveValidation('dbpass', { validMessage: "<?php echo $LANG['lv_good_pass']; ?>", wait: 500});
+			fdbpass.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_bad_pass']; ?>"});
+		</script>
+		<p><?php echo $LANG['db_pass_desc']; ?></p>
+		<h2><?php echo $LANG['site_info']; ?></h2>
+		<div><div class="field-label"><label for="sitename"><b><?php echo $LANG['site_name'];?></b></label>: (<span class="req">*</span>)</div>	<div class="field-widget"><input type="text" name="sitename" size="50" id="sitename" class="required" value="" title="<?php echo $LANG['title_site_name']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fsitename = new LiveValidation('sitename', { validMessage: "<?php echo $LANG['lv_good_sitename']; ?>", wait: 500});
+			fsitename.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_bad_sitename']; ?>"});
+		</script>
+		<p><?php echo $LANG['site_name_desc']; ?></p>
+		<div><div class="field-label"><label for="contact"><b><?php echo $LANG['contact']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="contact" size="50" id="contact" class="required validate-email" value="" title="<?php echo $LANG['title_contact']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fcontact = new LiveValidation('contact', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500 });
+			fcontact.add( Validate.Presence, { failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>" } );
+			fcontact.add( Validate.Email, { failureMessage: "<?php echo $LANG['lv_bad_email']; ?>" } );
+			fcontact.add( Validate.Length, { minimum: 10 } );
+		</script>
+		<p><?php echo $LANG['contact_desc']; ?></p>
+		<div><div class="field-label"><label for="sections-photo"><b><?php echo $LANG['sections']; ?></b></label>:</div> <div class="field-widget">
+			<input type="checkbox" checked="checked" disabled="disabled" name="sections-photo" id="sections-photo" value="" /><?php echo $LANG['link_gallery']; ?> <span class="error"><span class="error">(<?php echo $LANG['required']; ?>)</span></span><br />
+			<input type="checkbox" checked="checked" disabled="disabled" name="sections-board" id="sections-board" value="" /><?php echo $LANG['link_board']; ?> <span class="error">(<?php echo $LANG['required']; ?>)</span><br />
+			<input type="checkbox" checked="checked" disabled="disabled" name="sections-book" id="sections-book" value="" /><?php echo $LANG['link_address']; ?> <span class="error">(<?php echo $LANG['required']; ?>)</span><br />
+			<input type="checkbox" checked="checked" disabled="disabled" name="sections-calendar" id="sections-calendar" value="" /><?php echo $LANG['link_calendar']; ?> <span class="error">(<?php echo $LANG['required']; ?>)</span><br />
+			<input type="checkbox" name="sections-news" id="sections-news" value="familynews" /><?php echo $LANG['link_news']; ?><br/>
+			<input type="checkbox" name="sections-prayers" id="sections-prayers" value="prayerconcerns" /><?php echo $LANG['link_prayer']; ?>
+		</div></div>
+		<p><?php echo $LANG['sections_desc']; ?></p>
+		<h2><?php echo $LANG['admin_account']; ?></h2>
+		<p><?php echo $LANG['admin_desc1']; ?></p>
+		<p><?php echo $LANG['admin_desc2']; ?></p>
+		<div><div class="field-label"><label for="username"><b><?php echo $LANG['username']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="username" id="username" class="required" title="<?php echo $LANG['title_uname']; ?>" size="25" value=""/></div></div>
+		<script type="text/javascript">
+			var funame = new LiveValidation('username', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			funame.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>"});
+		</script>
+		<div><div class="field-label"><label for="password"><b><?php echo $LANG['password']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="password" name="password" id="password" class="required" title="<?php echo $LANG['title_pass']; ?>" size="25" value=""/></div></div>
+		<script type="text/javascript">
+			var fpass = new LiveValidation('password', { validMessage: "<?php echo $LANG['lv_good_pass']; ?>", wait: 500});
+			fpass.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_bad_pass']; ?>"});
+		</script>
+		<div><div class="field-label"><label for="fname"><b><?php echo $LANG['first_name']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="fname" size="50" id="fname" class="required" value="" title="<?php echo $LANG['title_fname']; ?>"/></div></div>
+		<script type="text/javascript">
+			var ffname = new LiveValidation('fname', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			ffname.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>"});
+		</script>
+		<div><div class="field-label"><label for="lname"><b><?php echo $LANG['last_name']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="lname" size="50" id="lname" class="required" value="" title="<?php echo $LANG['title_lname']; ?>"/></div></div>
+		<script type="text/javascript">
+			var flname = new LiveValidation('lname', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			flname.add(Validate.Presence, {failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>"});
+		</script>
+		<div><div class="field-label"><label for="email"><b><?php echo $LANG['email_address']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><input type="text" name="email" size="50" id="email" class="required validate-email" value="" title="<?php echo $LANG['title_email']; ?>"/></div></div>
+		<script type="text/javascript">
+			var femail = new LiveValidation('email', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500 });
+			femail.add( Validate.Presence, { failureMessage: "<?php echo $LANG['lv_ins_sorry_req']; ?>" } );
+			femail.add( Validate.Email, { failureMessage: "<?php echo $LANG['lv_bad_email']; ?>" } );
+			femail.add( Validate.Length, { minimum: 10 } );
+		</script>
+		<div><div class="field-label"><label for="day"><b><?php echo $LANG['birthday']; ?></b></label>: (<span class="req">*</span>)</div> <div class="field-widget"><select id="day" name="day">
+			<?php
+			$d = 1;
+			while ($d <= 31) {
+				if ($day == $d) { echo "<option value=\"$d\" selected=\"selected\">$d</option>"; }
+				else { echo "<option value=\"$d\">$d</option>"; }
+				$d++;
+			}
+			echo '</select><select name="month">';
+			$m = 1;
+			while ($m <= 12) {
+				$lang_month = "".date('M', mktime(0, 0, 0, $m, 1, 2006));
+				if ($month == $m) { echo "<option value=\"$m\" selected=\"selected\">" . $LANG[$lang_month] . "</option>"; }
+				else { echo "<option value=\"$m\">" . $LANG[$lang_month] . "</option>"; }
+				$m++;
+			}
+			echo '</select><select name="year">';
+			$y = 1900;
+			while ($y - 5 <= date('Y')) {
+				if ($year == $y) { echo "<option value=\"$y\" selected=\"selected\">$y</option>"; }
+				else { echo "<option value=\"$y\">$y</option>"; }
+				$y++;
+			} ?></select></div></div>
+		<div><div class="field-label"><label for="address"><b><?php echo $LANG['street']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="address" size="50" id="address" class="" value="" title="<?php echo $LANG['title_street']; ?>"/></div></div>
+		<script type="text/javascript">
+			var faddress = new LiveValidation('address', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+		</script>
+		<div><div class="field-label"><label for="city"><b><?php echo $LANG['city_town']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="city" size="50" id="city" class="" value="" title="<?php echo $LANG['title_city_town']; ?>"/></div></div>
+		<script type="text/javascript">
+			var fcity = new LiveValidation('city', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+		</script>
+		<div><div class="field-label"><label for="state"><b><?php echo $LANG['state_prov']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="state" id="state" class="" title="<?php echo $LANG['title_state_prov']; ?>" size="50" value=""/></div></div>
+		<script type="text/javascript">
+			var fstate = new LiveValidation('state', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+		</script>
+		<div><div class="field-label"><label for="zip"><b><?php echo $LANG['zip_pos']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="zip" id="zip" class="" title="<?php echo $LANG['title_zip_pos']; ?>" size="10" value=""/></div></div>
+		<script type="text/javascript">
+			var fzip = new LiveValidation('zip', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+		</script>
+		<div><div class="field-label"><label for="home"><b><?php echo $LANG['home_phone']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="home" id="home" class="validate-phone" title="<?php echo $LANG['title_phone']; ?>" size="20" value=""/></div></div>
+		<script type="text/javascript">
+			var fhome = new LiveValidation('home', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			fhome.add( Validate.Format, { pattern: /^[0-9\.\-\x\s\+\(\)]+$/ } );
+		</script>
+		<div><div class="field-label"><label for="work"><b><?php echo $LANG['work_phone']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="work" id="work" class="validate-phone" title="<?php echo $LANG['title_phone']; ?>" size="20" value=""/></div></div>
+		<script type="text/javascript">
+			var fwork = new LiveValidation('work', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			fwork.add( Validate.Format, { pattern: /^[0-9\.\-\x\s\+\(\)]+$/ } );
+		</script>
+		<div><div class="field-label"><label for="cell"><b><?php echo $LANG['mobile_phone']; ?></b></label>:</div> <div class="field-widget"><input type="text" name="cell" id="cell" class="validate-phone" title="<?php echo $LANG['title_phone']; ?>" size="20" value=""/></div></div>
+		<script type="text/javascript">
+			var fcell = new LiveValidation('cell', { validMessage: "<?php echo $LANG['lv_thanks']; ?>", wait: 500});
+			fcell.add( Validate.Format, { pattern: /^[0-9\.\-\x\s\+\(\)]+$/ } );
+		</script>
+		<p><input id="submit" name="submit" type="submit"  value="<?php echo $LANG['submit']; ?>"/></p>
+	</div>
+	</form><?php
+}
+function setupDatabase ($fname, $lname, $email, $birthday, $username, $password, $address='false', $city='false', $state='false', $zip='false', $home='false', $work='false', $cell='false') {
+	include 'inc/config_inc.php';
+	global $LANG;
+	$password = md5($password);
+	$connection = mysql_connect($cfg_mysql_host, $cfg_mysql_user, $cfg_mysql_pass);
+	if (!$connection) {
+		die("<h1>Connection Error (install.php 194)</h1>" . mysql_error());
+	} else {
+		mysql_select_db($cfg_mysql_db) or die("<h1>Error</h1><p><b>Database could not be found!</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_address`") or die("<h1>Error</h1><p><b>Could not drop `fcms_address` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_calendar`") or die("<h1>Error</h1><p><b>Could not drop `fcms_calendar` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_gallery_comments`") or die("<h1>Error</h1><p><b>Could not drop `fcms_gallery_comments` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_gallery_photos`") or die("<h1>Error</h1><p><b>Could not drop `fcms_gallery_photos` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_gallery_category`") or die("<h1>Error</h1><p><b>Could not drop `fcms_gallery_category` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_news_comments`") or die("<h1>Error</h1><p><b>Could not drop `fcms_news_comments` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_news`") or die("<h1>Error</h1><p><b>Could not drop `fcms_news` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_poll_users`") or die("<h1>Error</h1><p><b>Could not drop `fcms_poll_users` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_poll_options`") or die("<h1>Error</h1><p><b>Could not drop `fcms_poll_options` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_polls`") or die("<h1>Error</h1><p><b>Could not drop `fcms_polls` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_prayers`") or die("<h1>Error</h1><p><b>Could not drop `fcms_prayers` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_board_posts`") or die("<h1>Error</h1><p><b>Could not drop `fcms_board_posts` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_board_threads`") or die("<h1>Error</h1><p><b>Could not drop `fcms_board_threads` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_user_awards`") or die("<h1>Error</h1><p><b>Could not drop `fcms_user_awards` table.</b></p>" . mysql_error());
+		mysql_query("DROP TABLE IF EXISTS `fcms_users`") or die("<h1>Error</h1><p><b>Could not drop `fcms_users` table.</b></p>" . mysql_error());
+		mysql_query("CREATE TABLE `fcms_users` (`id` int(25) NOT NULL auto_increment, `access` tinyint(1) NOT NULL default '3', `activity` datetime NOT NULL default '0000-00-00 00:00:00', `joindate` timestamp NOT NULL default CURRENT_TIMESTAMP, `fname` varchar(25) NOT NULL default 'fname', `lname` varchar(25) NOT NULL default 'lname', `email` varchar(50) NOT NULL default 'me@mail.com', `birthday` date NOT NULL default '0000-00-00', `theme` varchar(25) NOT NULL default 'default.css', `username` varchar(25) NOT NULL default '0', `password` varchar(255) NOT NULL default '0', `avatar` varchar(25) NOT NULL default '0x0.gif', `boardsort` set('ASC','DESC') NOT NULL default 'ASC', `showavatar` set('YES','NO') NOT NULL default 'YES', `displayname` set('1','2','3') NOT NULL default '1', `frontpage` set('1','2') NOT NULL default '1', `timezone` set('-12 hours','-11 hours','-10 hours','-9 hours','-8 hours','-7 hours','-6 hours','-5 hours','-4 hours','-3 hours -30 minutes','-3 hours','-2 hours','-1 hours','-0 hours','+1 hours','+2 hours','+3 hours','+3 hours +30 minutes','+4 hours','+4 hours +30 minutes','+5 hours','+5 hours +30 minutes','+6 hours','+7 hours','+8 hours','+9 hours','+9 hours +30 minutes','+10 hours','+11 hours','+12 hours') NOT NULL default '-5 hours', `dst` tinyint(1) NOT NULL default '0', `activated` tinyint(1) NOT NULL default '0', PRIMARY KEY  (`id`), UNIQUE KEY `username` (`username`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_users` (`id`, `access`, `joindate`, `fname`, `lname`, `email`, `birthday`, `username`, `password`, `activated`) VALUES (1, 1, NOW(), '".addslashes($fname)."', '".addslashes($lname)."', '".addslashes($email)."', '$birthday', '".addslashes($username)."', '$password', 1)") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_address` (`id` int(11) NOT NULL auto_increment, `user` int(11) NOT NULL default '0', `entered_by` INT(11) NOT NULL DEFAULT '0', `updated` timestamp NOT NULL default CURRENT_TIMESTAMP, `address` varchar(50) default NULL, `city` varchar(50) default NULL, `state` varchar(50) default NULL, `zip` varchar(10) default NULL, `home` varchar(20) default NULL, `work` varchar(20) default NULL, `cell` varchar(20) default NULL, PRIMARY KEY  (`id`), KEY `user_ind` (`user`), KEY `ent_ind` (`entered_by`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_address` ADD CONSTRAINT `fcms_address_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_address` (`id`, `user`, `address`, `city`, `state`, `zip`, `home`, `work`, `cell`) VALUES (NULL, 1, '".addslashes($address)."', '".addslashes($city)."', '".addslashes($state)."', '".addslashes($zip)."', '".addslashes($home)."', '".addslashes($work)."', '".addslashes($cell)."')") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_calendar` (`id` int(11) NOT NULL auto_increment, `date` date NOT NULL default '0000-00-00', `title` varchar(50) NOT NULL default 'MyDate', `desc` text, `created_by` int(11) NOT NULL default '0', `type` set('Birthday','Anniversary','Holiday','Other') NOT NULL default 'Other', `private` TINYINT(1) NOT NULL DEFAULT '0', PRIMARY KEY  (`id`), KEY `by_ind` (`created_by`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_calendar` ADD CONSTRAINT `fcms_calendar_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_calendar` (`id`, `date`, `title`, `desc`, `created_by`, `type`) VALUES (NULL, '$birthday', '".addslashes($fname)." ".addslashes($lname)."', NULL, 1, 'Birthday'), (NULL, '2007-12-25', 'Christmas', NULL, 1, 'Holiday'), (NULL, '2007-02-14', 'Valentine''s Day', NULL, 1, 'Holiday'), (NULL, '2007-01-01', 'New Year''s Day', NULL, 1, 'Holiday'), (NULL, '2007-07-04', 'Independence Day', NULL, 1, 'Holiday'), (NULL, '2007-02-02', 'Groundhog Day', NULL, 1, 'Holiday'), (NULL, '2007-03-17', 'St. Patrick''s Day', NULL, 1, 'Holiday'), (NULL, '2007-04-01', 'April Fools Day', NULL, 1, 'Holiday'), (NULL, '2007-10-31', 'Halloween', NULL, 1, 'Holiday')") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_gallery_category` (`id` int(11) NOT NULL auto_increment, `name` varchar(50) NOT NULL default 'category', `user` int(11) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `user_ind` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_gallery_category` ADD CONSTRAINT `fcms_gallery_category_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_gallery_photos` (`id` int(11) NOT NULL auto_increment, `date` timestamp NOT NULL default '0000-00-00 00:00:00', `filename` varchar(25) NOT NULL default 'noimage.gif', `caption` text, `category` int(11) NOT NULL default '0', `user` int(11) NOT NULL default '0', `views` smallint(6) NOT NULL default '0', `votes` smallint(6) NOT NULL default '0', `rating` float NOT NULL default '0', PRIMARY KEY  (`id`), KEY `cat_ind` (`category`), KEY `user_ind` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_gallery_photos` ADD CONSTRAINT `fcms_gallery_photos_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_gallery_photos_ibfk_2` FOREIGN KEY (`category`) REFERENCES `fcms_gallery_category` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_gallery_comments` (`id` int(11) NOT NULL auto_increment, `photo` int(11) NOT NULL default '0', `comment` text NOT NULL, `date` timestamp NOT NULL default '0000-00-00 00:00:00', `user` int(11) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `photo_ind` (`photo`), KEY `user_ind` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_gallery_comments` ADD CONSTRAINT `fcms_gallery_comments_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_gallery_comments_ibfk_2` FOREIGN KEY (`photo`) REFERENCES `fcms_gallery_photos` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		if ($cfg_use_news) {
+			mysql_query("CREATE TABLE `fcms_news` (`id` int(11) NOT NULL auto_increment, `title` varchar(50) NOT NULL default '', `news` text NOT NULL, `user` int(11) NOT NULL default '0', `date` datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (`id`), KEY `userindx` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+			mysql_query("ALTER TABLE `fcms_news` ADD CONSTRAINT `fcms_news_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+			mysql_query("CREATE TABLE `fcms_news_comments` (`id` int(11) NOT NULL auto_increment, `news` int(11) NOT NULL default '0', `comment` text NOT NULL, `date` timestamp NOT NULL default '0000-00-00 00:00:00', `user` int(11) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `photo_ind` (`news`), KEY `user_ind` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+			mysql_query("ALTER TABLE `fcms_news_comments` ADD CONSTRAINT `fcms_news_comments_ibfk_2` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_news_comments_ibfk_1` FOREIGN KEY (`news`) REFERENCES `fcms_news` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		}
+		mysql_query("CREATE TABLE `fcms_polls` (`id` int(11) NOT NULL auto_increment, `question` text NOT NULL, `started` datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_polls` (`id`, `question`, `started`) VALUES (NULL, 'Family Connections software is...', NOW())") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_poll_options` (`id` int(11) NOT NULL auto_increment, `poll_id` int(11) NOT NULL default '0', `option` text NOT NULL, `votes` int(11) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `pollid_ind` (`poll_id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_poll_options` ADD CONSTRAINT `fcms_poll_options_ibfk_1` FOREIGN KEY (`poll_id`) REFERENCES `fcms_polls` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_poll_options` (`id`, `poll_id`, `option`, `votes`) VALUES (NULL, 1, 'Easy to use!', 0), (NULL, 1, 'Visually appealing!', 0), (NULL, 1, 'Just what our family needed!', 0)") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_poll_users` (`id` int(11) NOT NULL auto_increment, `user` int(11) NOT NULL default '0', `option` int(11) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `user_ind` (`user`), KEY `option_ind` (`option`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_poll_users` ADD CONSTRAINT `fcms_poll_users_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_poll_users_ibfk_2` FOREIGN KEY (`option`) REFERENCES `fcms_poll_options` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		if ($cfg_use_prayers) {
+			mysql_query("CREATE TABLE `fcms_prayers` (`id` int(11) NOT NULL auto_increment, `for` varchar(50) NOT NULL default '', `desc` text NOT NULL, `user` int(11) NOT NULL default '0', `date` datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (`id`), KEY `userindx` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+			mysql_query("ALTER TABLE `fcms_prayers` ADD CONSTRAINT `fcms_prayers_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		}
+		mysql_query("CREATE TABLE `fcms_board_threads` (`id` int(11) NOT NULL auto_increment, `subject` varchar(50) NOT NULL default 'Subject', `started_by` int(11) NOT NULL default '0', `updated` timestamp NOT NULL default '0000-00-00 00:00:00', `updated_by` int(11) NOT NULL default '0', `views` smallint(6) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `start_ind` (`started_by`), KEY `up_ind` (`updated_by`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_board_threads` ADD CONSTRAINT `fcms_threads_ibfk_1` FOREIGN KEY (`started_by`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_threads_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_board_threads` (`id`, `subject`, `started_by`, `updated`, `updated_by`, `views`) VALUES (1, '".$LANG['welcome']."', 1, NOW(), 1, 0)") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_board_posts` (`id` int(11) NOT NULL auto_increment, `date` timestamp NOT NULL default '0000-00-00 00:00:00', `thread` int(11) NOT NULL default '0', `user` int(11) NOT NULL default '0', `post` text NOT NULL, PRIMARY KEY  (`id`), KEY `thread_ind` (`thread`), KEY `user_ind` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_board_posts` ADD CONSTRAINT `fcms_posts_ibfk_1` FOREIGN KEY (`thread`) REFERENCES `fcms_board_threads` (`id`) ON DELETE CASCADE, ADD CONSTRAINT `fcms_posts_ibfk_2` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_board_posts` (`id`, `date`, `thread`, `user`, `post`) VALUES (NULL, NOW(), 1, 1, '".$LANG['welcome_post']."')") or die(mysql_error());
+		mysql_query("CREATE TABLE `fcms_user_awards` (`id` int(11) NOT NULL auto_increment, `user` int(11) NOT NULL default '0', `type` varchar(20) NOT NULL default '0', `value` smallint(4) NOT NULL default '0', `count` smallint(4) NOT NULL default '0', PRIMARY KEY  (`id`), KEY `user` (`user`)) ENGINE=InnoDB DEFAULT CHARSET=latin1") or die(mysql_error());
+		mysql_query("ALTER TABLE `fcms_user_awards` ADD CONSTRAINT `fcms_user_awards_ibfk_1` FOREIGN KEY (`user`) REFERENCES `fcms_users` (`id`) ON DELETE CASCADE") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (1, 1, 'top5poster', 1, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (2, 1, 'top5poster', 2, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (3, 1, 'top5poster', 3, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (4, 1, 'top5poster', 4, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (5, 1, 'top5poster', 5, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (6, 1, 'topthreadstarter', 0, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (7, 1, 'mostsmileys', 0, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (8, 1, 'top5photo', 1, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (9, 1, 'top5photo', 2, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (10, 1, 'top5photo', 3, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (11, 1, 'top5photo', 4, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (12, 1, 'top5photo', 5, 0)") or die(mysql_error());
+		mysql_query("INSERT INTO `fcms_user_awards` (`id`, `user`, `type`, `value`, `count`) VALUES (13, 1, 'topviewedphoto', 0, 0)") or die(mysql_error());
+		echo "<div id=\"install\"><h1>".$LANG['install_success']."</h1><p>Family Connections ".$LANG['install_done1']."</p><p>".$LANG['install_done2']." <a href=\"index.php\">".$LANG['install_done3']."</a> ".$LANG['install_done4']." Family Connections.<p></div>";
+	}
+} ?>

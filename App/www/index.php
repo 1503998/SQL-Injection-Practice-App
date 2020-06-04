@@ -1,229 +1,102 @@
 <?php
+/*
+Family Connections - a family oriented CMS -- http://www.haudenschilt.com/fcms/
 
-/*****************************************************************************/
-/* index.php                                                                 */
-/*****************************************************************************/
-/* Gravity Board X                                                           */
-/* Open-Source Project started by Jonathan Taft (admin@gravityboardx.com)    */
-/* Software Version: GBX Version 2.0                                         */
-/* ========================================================================= */
-/* Copyright (c) 2002-2007 Gravity Board X Developers. All Rights Reserved   */
-/* Software by: The Gravity Board X Development Team                         */
-/*****************************************************************************/
-/* This program is free software; you can redistribute it and/or modify it   */
-/* under the terms of the GNU General Public License as published by the     */
-/* Free Software Foundation; either version 2 of the License, or (at your    */
-/* option) any later version.                                                */
-/*                                                                           */
-/* This program is distributed in the hope that it will be useful, but       */
-/* WITHOUT ANY WARRANTY; without even the implied warranty of                */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General */
-/* Public License for more details.                                          */
-/*                                                                           */
-/* The GNU GPL can be found in gpl.txt, which came with your download of GBX */
-/*****************************************************************************/
+Copyright (C) 2007 Ryan Haudenschilt
 
-///////////////////////////////////////////////////////////////////////////////
-//----------------------------SCRIPT INFORMATION-----------------------------//
-//This is the main script that holds everything together.  It calls all other//
-//scripts and is loaded each time a page is viewed.  Depending on the        //
-//variables in the URL and what is sent by forms, it determines what is to be//
-//shown to the user.                                                         //
-///////////////////////////////////////////////////////////////////////////////
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-//error_reporting(E_ALL);
-error_reporting(0);
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
-$board_version = 'v2.0 BETA';
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+*/
 
-//START SCRIPT TIMER
-//This times how long it takes to execute the page loading, and is displayed at the bottom of each page
-$timeparts = explode(' ',microtime());
-$starttime = $timeparts[1].substr($timeparts[0],1);
-//END SCRIPT TIMER
-
-//Initialize $sr session variable
-$_SESSION['sr'] = '';
-
-//INCLUDE BOARD CONFIGURATION FILE - SEE CONFIG.PHP FOR MORE INFO
-include("config.php");
-$connection = dbconnect($hostname, $username, $password, $dbname);
-
-include("gzip.php");      //ENABLES GZIP PAGE COMPRESSION
-include("checkcookie.php");
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php
-
-//Gets rid of E_ALL notice of undefined index: action
-if(!isset($_GET['action']))
-{
-    $_GET['action'] = '';
-}
-
-//if($_GET['action'] == 'logout')
-//{
-//    setcookie("gbx[email]", $_SESSION['email'], time()-3600, "/", "", 0);
-//    setcookie("gbx[pw]", $_SESSION['pw'], time()-3600, "/", "", 0);
-//}
-
-//INCLUDE NEEDED FILES - SEE INDIVIDUAL FILES FOR MORE INFO
-include("check.php");     //HANDLES SESSION INFORMATION
-include("time.php");      //COORDINATES THE TIME FOR THE BOARD
-include("tracking.php");  //TRACKS USER ACTIONS THROUGHOUT THE BOARD
-include("banned.php");    //KEEPS A WATCH FOR BANNED MEMBERS
-
-//STATISTICS - INCREMENT TOTAL CLICKS BY ONE
-mysql_query("UPDATE " . $prefix . "stats SET totalclicks=totalclicks+1") OR DIE("Gravity Board X was unable to log your page view: " . mysql_error());
-
-//MEMBER STATISTICS - IF MEMBER IS LOGGED IN, INCREMENT THEIR TOTAL CLICKS BY ONE
-if($_SESSION['sr'] == '2'){
-mysql_query("UPDATE " . $prefix . "members SET totalclicks=totalclicks+1 WHERE memberid='{$_SESSION['memberid']}'") OR DIE("Gravity Board X was unable to log your member page view: " . mysql_error());
-}
-
-//IF REQUESTED, DISPLAY THE FOLLOWING INSTEAD OF THE MAIN PAGE:
-//INBOX
-
-if($_GET['action'] == 'inbox')
-{
-	include("inbox.php");
-//OUTBOX
-}elseif($_GET['action'] == 'outbox')
-{
-	include("outbox.php");
-//NEW PM PAGE
-}elseif($_GET['action'] == 'newpm')
-{
-	include("newpm.php");
-//DELETE A PM SCRIPT
-}elseif($_GET['action'] == 'pmdelete')
-{
-	include("pmdelete.php");
-//READ A PM
-}elseif($_GET['action'] == 'viewpm')
-{
-	include("viewpm.php");
-//OTHERWISE CONTINUE, DISPLAYING THE MAIN PAGE
-}else
-{
-
-?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-
-    <title><?php echo stripslashes($boardname); ?> (Powered By Gravity Board X)</title>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-
-    <link rel="stylesheet" type="text/css" href="skins/<?php echo $currentskin; ?>/skin.css"/>
-    <link rel="GBX Icon" href="favicon.ico"/>
-
-    <script type="text/javascript" src="validate/yav.js"></script>
-    <script type="text/javascript" src="validate/yav-config.js"></script>
-
-    <script type="text/javascript" src="ajax/prototype.js"></script>
-    <script type="text/javascript" src="ajax/scriptaculous.js"></script>
-
-    <script type="text/javascript" src="post/FCKeditor/fckeditor.js"></script>
-
-    <script type="text/javascript" src="fixheight.js"></script>
-    <script type="text/javascript" src="ajax/gbxAjaxReq.js"></script>
-    <script type="text/javascript" src="gbxEdit.js"></script>
-    <script type="text/javascript" src="ajax/gbxJSlib.js"></script>
-    <?php include("js.php"); ?>
-
-</head>
-
-<body>
-
-<div id="digg"><script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script></div>
-
-  <div id="main">
-    
-<?php include("headernav.php"); ?>
-
-<div id="screen">&nbsp;</div>
-<div id="loading">Loading... Please wait.</div>
-
-<?php
-
-//START BAN CHECK
-//CHECK TO SEE IF THE USER IS BANNED. IF THEY ARE, DISPLAY A BANNED MESSAGE
-if($_SESSION['banned'] == '1')
-{
-
-?>
-<div class="header">
-<span class="headerfont">Access Denied</span>
-</div>
-        <table class=station width="100%">
-          <tr>
-            <td>
-              <font color="#FF0000"><b>We're sorry, but you are currently banned from using this forum.</b></font>
-              <p>The current time is <?php echo $time; //SHOW THE CURRENT TIME ?>.</p>
-              <p>You are banned until <?php echo date ("l, F d Y, h:i:s a",$banuntil); //SHOW WHEN THE USER'S BAN IS LIFTED ?>.</p>
-              <p>Countdown: <b><?php echo $timeleft; //SHOW SECONDS LEFT UNTIL THE USER'S BAN IS OVER ?></b> seconds left.
-              <p>The reason for your ban is: <?php echo $banreason; //SHOW THE REASON FOR THE USER'S BAN ?></p>
-            </td>
-          </tr>
-        </table>
-<?php
-
-//END BAN CHECK
-}else
-{
-    //SHOW THE BOARD'S ANNOUNCEMENTS (IF APPLICABLE)
-    include("announcedisplay.php");
-
-    //INCLUDE THE SWITCH SCRIPT. THIS DETERMINES WHAT IS SHOWN ON THE PAGE. SEE SWITCH.PHP FOR MORE INFO.
-    include("switch.php");
-
-?>
-
-    <br/><br/>
-    <div id="footer">
-      <span class="small">
-      Powered By <b><a href="http://www.gravityboardx.com">Gravity Board X</a></b> <?php echo $board_version; ?> | &copy;2002-2007 Gravity Board X Development Team.<br/>
-      <?php //echo 'Executed in';
-    
-//START SCRIPT TIMER CALCULATOR
-$timeparts = explode(' ',microtime());
-$endtime = $timeparts[1].substr($timeparts[0],1);
-$exectime = substr($endtime - $starttime, 0, 6);
-//END SCRIPT TIMER CALCULATOR
-    
-//DISPLAY THE TIME IT TOOK TO EXECUTE THE PAGE
-//echo $exectime;
-//echo 'seconds |';    
-    
-//DISPLAY WHETHER DEFLATE OR GZIP COMPRESSION ARE ENABLED OR DISABLED
-//if($support_deflate){ echo 'deflate enabled'; }elseif($support_gzip){ echo 'gzip enabled<br/>'; }else{ echo 'gzip disabled<br/>'; }
-    
-?>
-
-      <b>This software is licensed under the <a href="index.php?action=gpl">GNU General Public License</a>.</b>
-      </span>
-  </div>
-
-  </div>
-
-</body>
-
-</html>
-<?php
-
+session_start();
+include_once('inc/language.php');
+if (!file_exists('inc/config_inc.php')) {
+	displayHeader(false);
+	echo "<div id=\"oops\"><h1>".$LANG['need_to_install1']."</h1><p>".$LANG['need_to_install2']." <a href=\"install.php\">".$LANG['need_to_install3']."</a> ".$LANG['need_to_install4']."</p></div></body></html>";
+} else {
+	include_once('inc/config_inc.php');
+	include_once('inc/util_inc.php');
+	if (isset($_POST['user'])) { $user = $_POST['user']; }
+	if (isset($_POST['pass'])) { $pass = $_POST['pass']; }
+	if (isset($_POST['rem'])) { $rem = $_POST['rem']; } else { $rem = 0; }
+	mysql_connect($cfg_mysql_host, $cfg_mysql_user, $cfg_mysql_pass);
+	mysql_select_db($cfg_mysql_db);
+	if (!isset($_SESSION['login_id']) && !isset($_COOKIE['fcms_login_id']))  {
+		if ((!isset($user)) || (!isset($pass))) {
+			displayHeader();
+			displayLogin();
+			exit();
+		}
+		$user = escape_string($user);
+		$pass = escape_string($pass);
+		$pass = md5($pass); 
+		$result = mysql_query("SELECT * FROM fcms_users WHERE username='$user' AND password='$pass'") or die("<h1>Login Check Error (index.php 39)</h1>" . mysql_error());
+		$login_check = mysql_num_rows($result);
+		if($login_check > 0) {
+			$a = mysql_query("SELECT activated FROM fcms_users WHERE username='$user' AND password='$pass'") or die("<h1>Activated Check Error (index.php 42)</h1>" . mysql_error());
+			$answer = mysql_fetch_array($a);
+			$account_is_active = $answer['activated'];
+			if($account_is_active > 0) {
+				while($row = mysql_fetch_array($result)) { 
+					if ($rem >= 1) {
+						setcookie('fcms_login_id', $row['id'], time() + (30*(24*3600)), '/');  // 30 days
+						setcookie('fcms_login_uname', $row['username'], time() + (30*(24*3600)), '/');  // 30 days
+						setcookie('fcms_login_pw', $row['password'], time() + (30*(24*3600)), '/');  // 30 days
+					} else {
+						$_SESSION['login_id'] = $row['id'];
+						$_SESSION['login_uname'] = $row['username'];
+						$_SESSION['login_pw'] = $row['password'];
+					}
+					mysql_query("UPDATE fcms_users SET activity=NOW() WHERE id=" . $row['id']) or die("<h1>Activity Error (index.php 56)</h1>" . mysql_error());
+					echo "<h3>".$LANG['login_success']."<h3><a href=\"home.php\">".$LANG['continue']."</a>.";
+					echo "<meta http-equiv='refresh' content='0;URL=home.php'>";
+				}
+			} else {
+				displayHeader();
+				echo '<div class="err-msg"><h2>'.$LANG['err_active1'].'</h2><p>'.$LANG['err_active2'].'</p></div>';
+				displayLogin();
+			}
+		} else { 
+			displayHeader();
+			echo '<div class="err-msg"><h2>'.$LANG['err_invalid1'].'</h2/><p>'.$LANG['err_invalid2'].'</p><p>'.$LANG['err_invalid3'].'</p></div>';
+			displayLogin();
+		}
+	} else {
+		if (isset($_COOKIE['fcms_login_id'])) {
+			$_SESSION['login_id'] = $_COOKIE['fcms_login_id'];
+			$_SESSION['login_uname'] = $_COOKIE['fcms_login_uname'];
+			$_SESSION['login_pw'] = $_COOKIE['fcms_login_pw'];
+		}
+		mysql_query("UPDATE fcms_users SET activity=NOW() WHERE id=" . $_SESSION['login_id']) or die("<h1>Activity Error (index.php 76)</h1>" . mysql_error());
+		echo "<h3>".$LANG['already_login']."</h3><a href=\"home.php\">".$LANG['continue']."</a>.";
+		echo "<meta http-equiv='refresh' content='0;URL=home.php'>";
 	}
 }
-//CHECK TO SEE IF DEBUG MODE IS ENABLED
-$debquery = mysql_query("SELECT debugon FROM " . $prefix . "settings") OR DIE("Debugging error: " . mysql_error());
-list($debug) = mysql_fetch_row($debquery);
 
-//IF ENABLED, INCLUDE THE BOARD DEBUGGER
-if($debug == true)
-{
-    include("debugger.php");
+function displayHeader($login = true) {
+	global $cfg_sitename, $stgs_release, $LANG;
+	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
+		. '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$LANG['lang'].'" lang="'.$LANG['lang'].'"><head><title>' . $cfg_sitename . ' - powered by ' . $stgs_release . '</title>'
+		. '<link rel="stylesheet" type="text/css" href="themes/login.css" /></head><body';
+	if ($login) { echo ' onload="document.getElementById(\'user\').focus()"'; }
+	echo '>';
 }
-
-?>
+function displayLogin() {
+	global $cfg_sitename, $stgs_release, $LANG;
+	echo '<div id="login_box"><form action="index.php" method="post"><h1 id="login_header">'.$LANG['login_to'].' ' . $cfg_sitename . '</h1>'
+		. '<p><label for="user">'.$LANG['username'].':</label><input type="text" name="user" id="user"/></p>'
+		. '<p><label for="pass">'.$LANG['password'].':</label><input type="password" name="pass" id="pass"/><span><a href="lostpw.php">'.$LANG['forgot_pass'].'</a></span></p>'
+		. '<p><label class="rem" for="rem">'.$LANG['remember_me'].'</label><input name="rem" id="rem" type="checkbox" value="1" /><input type="submit" name="submit" id="submit" value="'.$LANG['login'].'" /></p>'
+		. '<div id="register">'.$LANG['no_account'].' <a href="register.php">'.$LANG['register_here'].'</a>.</div></form></div></body></html>';
+} ?>
